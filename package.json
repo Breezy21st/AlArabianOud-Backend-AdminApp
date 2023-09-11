@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "server": "nodemon index.js",
-    "adminclient": "cd admin-app && npm start",
+    "adminclient": "cd admin-app && npm install && npm start",
     "dev": "concurrently \"nodemon index.js\" \"npm run adminclient\""
   },
   "author": "Katlego Junior Shomang",
