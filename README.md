@@ -6,3 +6,6 @@ How to install
 2. Alternatively, you can just download the source code from this webpage and open the file using VSCode.
 3. Open a terminal on VSCode and run this command to install all required dependencies: npm install
 4. After all dependencies have been installed, on your terminal, run the command: npm run dev
+5. admin site logins
+   email: katlegoshomangjunior@gmail.com
+   password: abc123456
