@@ -25,6 +25,9 @@
     "web-vitals": "^2.1.4",
     "yup": "^1.2.0"
   },
+  "engines": {
+    "node": ">=14.20.1"
+  },
   "scripts": {
     "start": "set PORT=3008 && react-scripts start",
     "build": "react-scripts build",
