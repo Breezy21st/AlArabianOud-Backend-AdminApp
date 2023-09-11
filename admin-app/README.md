@@ -1,23 +1,3 @@
-This is the Admin Site of Al Arabian Oud backend Repository
-
-Please ensure that the Al Arabian Oud repository is on your machine and running. 
-Here is the Link to the Backend APP:  https://github.com/Breezy21st/AlArabianOud-Backend
-This admin web app will not work without the backend.
-
-on your VSCode terminal run the command:
-
- npm install
-
- to install all the node modules(Dependencies).
-
-
-
-
-
-
-
-
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

@@ -204,9 +204,33 @@ const MainLayout = () => {
                 height={40}
                 src={Client} alt='' />
               </div>
-              <div  >
+              <div role="button"
+                id="dropdownMenuLink"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+                >
                 <h5 className='mb-0'>Katlego Shomang</h5>
                 <p className='mb-0'>katlegoshomang@gmail.com</p>
+              </div>
+              <div className="dropdown-menu" aria-labelledby="dropdownMenuLink"> 
+              <li>
+                  <Link
+                    className="dropdown-item py-1 mb-1"
+                    style={{ height: "auto", lineHeight: "20px" }}
+                    to="/"
+                  >
+                    View Profile
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className="dropdown-item py-1 mb-1"
+                    style={{ height: "auto", lineHeight: "20px" }}
+                    to="/"
+                  >
+                    Signout
+                  </Link>
+                </li>
               </div>
             </div>
           </div>
