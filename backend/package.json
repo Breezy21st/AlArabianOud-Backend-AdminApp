@@ -9,9 +9,9 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
     "server": "nodemon index.js",
-    "install-all": "cd admin-app && npm install && cd ../ && npm install",
     "adminclient": "cd admin-app && npm run start",
-    "dev": "concurrently \"npm run server\" \"npm run adminclient\""
+    "build": "npm i",
+    "dev": "nodemon index.js"
   },
   "author": "Katlego Junior Shomang",
   "license": "ISC",
