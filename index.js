@@ -19,6 +19,7 @@ const uploadRouter = require("./routes/uploadRoute");
 const morgan = require('morgan');
 const cors = require('cors');
 
+
 dbConnect();
 
 app.use(morgan('dev'));
@@ -40,6 +41,8 @@ app.use('/api/upload', uploadRouter);
 
 app.use(notFound);
 app.use(errorHandler);
+
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on PORT ${PORT}`);

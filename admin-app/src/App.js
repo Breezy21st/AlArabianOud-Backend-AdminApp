@@ -30,7 +30,14 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={ <OpenRoutes> <Login /> </OpenRoutes> } />
-        <Route path="/admin" element={ <PrivateRoutes> < MainLayout /> </PrivateRoutes> }>
+        <Route 
+            path="/admin" 
+            element={ 
+              <PrivateRoutes> 
+                < MainLayout /> 
+              </PrivateRoutes> 
+            }
+            >
         <Route index element={<Dashboard />} />
         <Route path="enquiries" element={<Enquiries />} />
         <Route path="enquiries/:id" element={<ViewEnq />} /> 
@@ -46,9 +53,7 @@ function App() {
           <Route path="orders" element={<Orders />} />
           <Route path="order/:id" element={<ViewOrder />} />
           <Route path="customers" element={<Customers />} />
-          <Route path="list-color" element={<Colorlist />} />
-          <Route path="color" element={<Addcolor />} />
-          <Route path="color/:id" element={<Addcolor />} />
+          
           <Route path="list-category" element={<Categorylist />} />
           <Route path="category" element={<Addcat />} />
           <Route path="category/:id" element={<Addcat />} />
