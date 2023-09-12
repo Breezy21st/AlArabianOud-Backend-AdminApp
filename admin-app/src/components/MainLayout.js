@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -6,7 +6,6 @@ import {
 } from '@ant-design/icons';
 import { Layout, Menu, Button, theme } from 'antd';
 import { GrPieChart } from "react-icons/gr";
-// import { GiDelicatePerfume } from "react-icons/gi";
 import { AiOutlineAppstoreAdd, 
          AiOutlineShoppingCart,
          AiOutlineLogout,
@@ -17,14 +16,12 @@ import { useNavigate } from 'react-router-dom';
 import { RiCouponLine } from "react-icons/ri";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+
 import { ImBlog } from "react-icons/im";
 import { FaClipboardList, FaBloggerB } from "react-icons/fa";
 import { SiBrandfolder } from "react-icons/si";
 import { BiCategoryAlt } from "react-icons/bi";
-import { IoIosNotifications } from 'react-icons/io';
 import Logo from '../images/Logo.png';
-import Client from '../images/customer.png';
 import { Outlet } from 'react-router-dom';
 
 const { Header, Sider, Content } = Layout;
@@ -35,6 +32,13 @@ const MainLayout = () => {
       token: { colorBgContainer },
     } = theme.useToken();
     const navigate = useNavigate();
+    const [user, setUser] = useState({}); //state to store user details
+
+    useEffect(() => {
+      //Retrive user information from local storage
+      const storedUser = JSON.parse(localStorage.getItem('user'));
+      setUser(storedUser);
+    }, []);
 
   return (
     <Layout>
@@ -193,44 +197,13 @@ const MainLayout = () => {
             }}
           />
           <div className='d-flex gap-4 align-items-center'>
-            <div className='position-relative'>
-              <IoIosNotifications className='fs-4'/>
-              <span className='badge bg-warning rounded-circle p-1 position-absolute'> 3 </span>
-            </div>
+            
             <div className='d-flex gap-3 align-items-center'>
-              <div>
-                <img 
-                width={40} 
-                height={40}
-                src={Client} alt='' />
-              </div>
-              <div role="button"
-                id="dropdownMenuLink"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-                >
-                <h5 className='mb-0'>Katlego Shomang</h5>
-                <p className='mb-0'>katlegoshomang@gmail.com</p>
-              </div>
-              <div className="dropdown-menu" aria-labelledby="dropdownMenuLink"> 
-              <li>
-                  <Link
-                    className="dropdown-item py-1 mb-1"
-                    style={{ height: "auto", lineHeight: "20px" }}
-                    to="/"
-                  >
-                    View Profile
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    className="dropdown-item py-1 mb-1"
-                    style={{ height: "auto", lineHeight: "20px" }}
-                    to="/"
-                  >
-                    Signout
-                  </Link>
-                </li>
+              
+              <div >
+                  {/* display user firstname + lastname then email addy */}
+                <h5 className='mb-0'>{user.firstname} {user.lastname}</h5>
+                <p className='mb-0'>{user.email}</p>
               </div>
             </div>
           </div>
@@ -261,4 +234,4 @@ const MainLayout = () => {
   )
 }
 
-export default MainLayout
+export default MainLayout;
