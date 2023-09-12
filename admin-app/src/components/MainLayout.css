@@ -1,0 +1,50 @@
+/* MainLayout.css */
+
+/* Default styles for user info */
+.user-info {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+}
+
+.user-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 16px;
+}
+
+.user-details {
+    flex-grow: 1;
+}
+
+.user-name {
+    font-size: 16px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-email {
+    font-size: 14px;
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Responsive styles for smaller screens */
+@media screen and (max-width: 768px) {
+    .user-info {
+        padding: 8px;
+    }
+
+    .user-name {
+        font-size: 14px;
+    }
+
+    .user-email {
+        font-size: 12px;
+    }
+}

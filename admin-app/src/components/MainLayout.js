@@ -23,6 +23,7 @@ import { SiBrandfolder } from "react-icons/si";
 import { BiCategoryAlt } from "react-icons/bi";
 import Logo from '../images/Logo.png';
 import { Outlet } from 'react-router-dom';
+import './MainLayout.css';
 
 const { Header, Sider, Content } = Layout;
 

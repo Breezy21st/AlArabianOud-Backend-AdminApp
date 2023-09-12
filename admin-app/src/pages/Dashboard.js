@@ -1,33 +1,51 @@
 import React, { useEffect, useState } from "react";
-// import { BsArrowDownRight } from "react-icons/bs";
+
 import { Column } from "@ant-design/plots";
 import { Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { getMonthlyData, getOrders, getYearlyData } from "../features/auth/authSlice";
+
+
 const columns = [
   {
     title: "SNo",
     dataIndex: "key",
   },
   {
+    title: "Orders",
+    render: (record) => (
+      <React.Fragment>
+        <p>Name: {record.name}</p>
+        <p>Amount: {record.dprice}</p>
+        <p>Status: {record.status}</p>
+      </React.Fragment>
+    ),
+    responsive: ["xs"]
+  },
+  {
     title: "Name",
     dataIndex: "name",
+    responsive: ["sm"],
   },
   {
     title: "Product Count",
     dataIndex: "product",
+    responsive: ["sm"],
   },
   {
     title: "Total Price",
     dataIndex: "price",
+    responsive: ["sm"]
   },
   {
     title: "Total Price After Discount",
     dataIndex: "dprice",
+    responsive: ["sm"],
   },
   {
     title: "Status",
     dataIndex: "status",
+    responsive: ["sm"],
   },
 ];
 
@@ -155,26 +173,20 @@ setorderData(data1);
     <div>
       <h3 className="mb-4 title">Dashboard</h3>
       <div className="d-flex justify-content-between align-items-center gap-3">
-        <div className="d-flex p-3 justify-content-between align-items-end flex-grow-1 bg-white p-3 roudned-3">
+        <div className="d-flex p-3 justify-content-between align-items-end flex-grow-1 bg-white p-3 roudned-3 ml-auto">
           <div>
-            <p className="desc">Total Income</p>
+            <p className="desc">Total Yearly Income</p>
             <h4 className="mb-0 sub-title">R{yearlyDataState && yearlyDataState[0]?.amount}</h4>
           </div>
-          <div className="d-flex flex-column align-items-end">
-            
-            <p className="mb-0  desc">Yearly Total Income</p>
-          </div>
+          
         </div>
         
-        <div className="d-flex p-3 justify-content-between align-items-end flex-grow-1 bg-white p-3 roudned-3">
+        <div className="d-flex p-3 justify-content-between align-items-end flex-grow-1 bg-white p-3 roudned-3 mr-auto">
           <div>
-            <p className="desc">Total Sales</p>
+            <p className="desc">Total Yearly Sales</p>
             <h4 className="mb-0 sub-title">{yearlyDataState && yearlyDataState[0]?.count}</h4>
           </div>
-          <div className="d-flex flex-column align-items-end">
-            
-            <p className="mb-0 desc">Yearly Total Sales</p>
-          </div>
+          
         </div>
       </div>
       <div className="d-flex justify-content-between gap-3">
