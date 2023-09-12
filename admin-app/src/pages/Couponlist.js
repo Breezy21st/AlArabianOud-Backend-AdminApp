@@ -12,25 +12,41 @@ const columns = [
     title: "SNo",
     dataIndex: "key",
   },
-
+  {
+    title: "Coupon list",
+    render: (record) => (
+      <React.Fragment>
+        <p>Name: {record.name}</p>
+        <p>Discount %: {record.discount}</p>
+        <p>Expiry Date: {record.expiry}</p>
+        <p>Action: {record.action}</p>
+        <br/>
+      </React.Fragment>
+    ),
+    responsive: ["xs"]
+  },
   {
     title: "Name",
     dataIndex: "name",
     sorter: (a, b) => a.name.length - b.name.length,
+    responsive: ["sm"],
   },
   {
     title: "Discount %",
     dataIndex: "discount",
     sorter: (a, b) => a.discount - b.discount,
+    responsive: ["sm"],
   },
   {
     title: "Expiry",
     dataIndex: "expiry",
     sorter: (a, b) => a.name.length - b.name.length,
+    responsive: ["sm"],
   },
   {
     title: "Action",
     dataIndex: "action",
+    responsive: ["sm"],
   },
 ];
 
