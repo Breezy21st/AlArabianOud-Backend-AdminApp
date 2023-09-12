@@ -1,0 +1,11 @@
+/* Default styles for larger screens */
+.w-25{
+    width: 25%;
+}
+
+/* media query for smaller screens */
+@media (max-width:768px){
+    .w-25{
+        width: 100%;
+    }
+}

@@ -42,7 +42,9 @@ const Login = () => {
   return (
 
     <div className='background'> 
-    
+    <div className= "container py-5">
+      <div className="row justify-content-center">
+        <div className="col-md-6">
     <div className='py-5' style={{ minHeight: "100vh"}}>
       
          <br />
@@ -50,7 +52,7 @@ const Login = () => {
       <br />
       <br />
       <br />
-      <div className="my-5 w-25 bg-white rounded-3 mx-auto p-4">
+      <div className="bg-white rounded-3 p-4">
         <h3 className="text-center title">Login</h3>
         <p className="text-center">Login to your account to continue.</p>
         <div className="error text-center">
@@ -91,6 +93,9 @@ const Login = () => {
           </button>
         </form>
       </div>
+    </div>
+    </div>
+    </div>
     </div>
     </div>
   )
