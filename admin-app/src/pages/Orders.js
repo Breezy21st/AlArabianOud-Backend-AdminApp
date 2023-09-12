@@ -1,8 +1,6 @@
 import React, { useEffect } from "react";
 import { Table } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { BiEdit } from "react-icons/bi";
-import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { getOrders, updateAOrder } from "../features/auth/authSlice";
 const columns = [
@@ -11,28 +9,49 @@ const columns = [
     dataIndex: "key",
   },
   {
+    title: "Orders",
+    render: (record) => (
+      <React.Fragment>
+        <p>Name: {record.name}</p>
+        <p>Products: {record.product}</p>
+        <p>Amount: {record.amount}</p>
+        <p>Date: {record.date}</p>
+        <p>Address: {record.address}</p>
+        <p>Action: {record.action}</p>
+        <br/>
+      </React.Fragment>
+    ),
+    responsive: ["xs"]
+  },
+  {
     title: "Name",
     dataIndex: "name",
+    responsive: ["sm"],
   },
   {
     title: "Product",
     dataIndex: "product",
+    responsive: ["sm"],
   },
   {
     title: "Amount (ZAR)",
     dataIndex: "amount",
+    responsive: ["sm"],
   },
   {
     title: "Date",
     dataIndex: "date",
+    responsive: ["sm"],
   },
   {
     title: "Shipping Address",
     dataIndex: "address",
+    responsive: ["sm"],
   },
   {
     title: "Action",
     dataIndex: "action",
+    responsive: ["sm"],
   },
 ];
 

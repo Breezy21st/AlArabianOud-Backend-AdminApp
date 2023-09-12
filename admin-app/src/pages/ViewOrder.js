@@ -12,20 +12,37 @@ const columns = [
     dataIndex: "key",
   },
   {
+    title: "Order Items",
+    render: (record) => (
+      <React.Fragment>
+        <p>Product Name: {record.name}</p>
+        <p>Brand: {record.brand}</p>
+        <p>Count: {record.count}</p>
+        <p>Amount: {record.amount}</p>
+        <br/>
+      </React.Fragment>
+    ),
+    responsive: ["xs"]
+  },
+  {
     title: "Product Name",
     dataIndex: "name",
+    responsive: ["sm"],
   },
   {
     title: "Brand",
     dataIndex: "brand",
+    responsive: ["sm"],
   },
   {
     title: "Count",
     dataIndex: "count",
+    responsive: ["sm"],
   },
   {
     title: "Amount (ZAR)",
     dataIndex: "amount",
+    responsive: ["sm"],
   },
   
 ];

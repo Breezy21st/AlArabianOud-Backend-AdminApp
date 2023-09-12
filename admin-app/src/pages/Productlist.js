@@ -11,32 +11,46 @@ const columns = [
     dataIndex: "key",
   },
   {
+    title: "Products",
+    render: (record) => (
+      <React.Fragment>
+        <p>Name: {record.title}</p>
+        <p>Brand: {record.brand}</p>
+        <p>Category: {record.category}</p>
+        <p>Action: {record.action}</p>
+        <br/>
+      </React.Fragment>
+    ),
+    responsive: ["xs"]
+  },
+  {
     title: "Title",
     dataIndex: "title",
     sorter: (a, b) => a.title.length - b.title.length,
+    responsive: ["sm"],
   },
   {
     title: "Brand",
     dataIndex: "brand",
     sorter: (a, b) => a.brand.length - b.brand.length,
+    responsive: ["sm"],
   },
   {
     title: "Category",
     dataIndex: "category",
     sorter: (a, b) => a.category.length - b.category.length,
-  },
-  {
-    title: "Color",
-    dataIndex: "color",
+    responsive: ["sm"],
   },
   {
     title: "Price",
     dataIndex: "price",
     sorter: (a, b) => a.price - b.price,
+    responsive: ["sm"],
   },
   {
     title: "Action",
     dataIndex: "action",
+    responsive: ["sm"],
   },
 ];
 
@@ -70,7 +84,7 @@ const Productlist = () => {
   console.log(data1);
   return (
     <div>
-      <h3 className="mb-4 title">Products</h3>
+      <h3 className="mb-4 title">Product List</h3>
       <div>
         <Table columns={columns} dataSource={data1} />
       </div>

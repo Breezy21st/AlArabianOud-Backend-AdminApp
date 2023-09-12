@@ -19,7 +19,7 @@ const columns = [
     sorter: (a, b) => a.name.length - b.name.length,
   },
   {
-    title: "Discount",
+    title: "Discount %",
     dataIndex: "discount",
     sorter: (a, b) => a.discount - b.discount,
   },

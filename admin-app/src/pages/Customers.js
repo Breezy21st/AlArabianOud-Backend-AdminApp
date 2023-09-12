@@ -8,17 +8,32 @@ const columns = [
     dataIndex: "key",
   },
   {
+    title: "Orders",
+    render: (record) => (
+      <React.Fragment>
+        <p>Name: {record.name}</p>
+        <p>Email: {record.email}</p>
+        <p>Mobile: {record.mobile}</p>
+        <br/>
+      </React.Fragment>
+    ),
+    responsive: ["xs"]
+  },
+  {
     title: "Name",
     dataIndex: "name",
     sorter: (a, b) => a.name.length - b.name.length,
+    responsive: ["sm"],
   },
   {
     title: "Email",
     dataIndex: "email",
+    responsive: ["sm"],
   },
   {
     title: "Mobile",
     dataIndex: "mobile",
+    responsive: ["sm"],
   },
 ];
 

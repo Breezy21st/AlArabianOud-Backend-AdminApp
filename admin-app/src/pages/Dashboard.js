@@ -18,6 +18,7 @@ const columns = [
         <p>Name: {record.name}</p>
         <p>Amount: {record.dprice}</p>
         <p>Status: {record.status}</p>
+        <br/>
       </React.Fragment>
     ),
     responsive: ["xs"]
