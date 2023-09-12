@@ -1,8 +1,7 @@
 # AlArabianOud-Backend-AdminApp
 AlArabianOud-Backend-AdminApp
 
-deployed admin website:
-https://al-arabian-oud-backend-admin-7q0a1ks0y-breezy21st.vercel.app/
+admin site deployment domain: https://al-arabian-oud-backend-admin-app.vercel.app/
 
 email: katlegoshomangjunior@gmail.com
 password: abc123456
