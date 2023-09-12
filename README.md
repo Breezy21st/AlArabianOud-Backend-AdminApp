@@ -6,7 +6,10 @@ admin site deployment domain: https://al-arabian-oud-backend-admin-app.vercel.ap
 email: katlegoshomangjunior@gmail.com
 password: abc123456
 
-How to install locally on vscode:
+KNOWN BUGS:
+NOTE: After logging in, please refresh the page; there's a bug that causes the dashboard not to load up data after log in.
+
+How to install locally on vs code:
 
 Git clone the repo into your local machine, by navigating to your desired directory on your Local Machine, open the terminal on that directory, and then run the command: git clone https://github.com/Breezy21st/AlArabianOud-Backend-AdminApp.git (Please ensure that you have installed git on your machine or else the git commands won't work.)
 Alternatively, you can just download the source code from this webpage and open the file using VSCode.
