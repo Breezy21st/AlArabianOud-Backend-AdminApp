@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { getOrders, updateAOrder } from "../features/auth/authSlice";
 const columns = [
   {
-    title: "SNo",
+    title: "No",
     dataIndex: "key",
   },
   {

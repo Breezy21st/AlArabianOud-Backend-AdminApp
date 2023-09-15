@@ -6,7 +6,7 @@ import { getOrder } from "../features/auth/authSlice";
 
 const columns = [
   {
-    title: "SNo",
+    title: "No",
     dataIndex: "key",
   },
   {
