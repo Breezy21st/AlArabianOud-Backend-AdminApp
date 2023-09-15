@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUsers } from "../features/customers/customerSlice";
 const columns = [
   {
-    title: "SNo",
+    title: "No",
     dataIndex: "key",
+    responsive: ["sm"],
   },
   {
     title: "Orders",

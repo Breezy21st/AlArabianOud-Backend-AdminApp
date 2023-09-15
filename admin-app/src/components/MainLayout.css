@@ -48,3 +48,21 @@
         font-size: 12px;
     }
 }
+
+/* MainLayout.css */
+.sider-mobile {
+    transition: transform 0.3s ease; /* Add a smooth transition effect */
+    transform: translateX(0); /* Start with the Sider in its normal position */
+  }
+  
+  /* Media query to hide the Sider when collapsed */
+  @media (max-width: 768px) {
+    .sider-mobile.ant-layout-sider-collapsed {
+      transform: transform 0.3s ease;
+      transform: translateX(-100%); /* Move the Sider off-screen to the left when collapsed */
+      display: none;
+    }
+
+  }
+  
+  

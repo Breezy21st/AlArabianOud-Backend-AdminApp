@@ -34,6 +34,7 @@ const MainLayout = () => {
     } = theme.useToken();
     const navigate = useNavigate();
     const [user, setUser] = useState({}); //state to store user details
+    const isMobile = window.innerWidth <= 768;
 
     useEffect(() => {
       //Retrive user information from local storage
@@ -41,13 +42,29 @@ const MainLayout = () => {
       setUser(storedUser);
     }, []);
 
+    //siders collapsed state based on screen sizer
+    useEffect(() => {
+      if (isMobile) {
+        setCollapsed(true);
+      } else {
+        setCollapsed(false);
+      }
+    }, [isMobile]);
+
+    const toggleSider = () => {
+      if (isMobile) {
+        setCollapsed(!collapsed);
+      }
+    };
+
   return (
     <Layout>
-      <Sider trigger={null} collapsible collapsed={collapsed}>
+      <Sider collapsible collapsed={collapsed} className={`sider-mobile ${isMobile ? '' : 'not-mobile'}`}>
         <div className="logo" > 
         <img className= 'sm-logo' alt='' src = {Logo} height={35} />
         <img className= 'lg-logo' alt='' src = {Logo} /> 
         </div>
+
         <Menu
           theme="dark"
           mode="inline"
@@ -190,7 +207,7 @@ const MainLayout = () => {
           <Button
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-            onClick={() => setCollapsed(!collapsed)}
+             onClick={toggleSider}
             style={{
               fontSize: '16px',
               width: 64,
@@ -209,8 +226,9 @@ const MainLayout = () => {
             </div>
           </div>
         </Header>
-        <Content
+        <Content 
           style={{
+            
             margin: '24px 16px',
             padding: 24,
             minHeight: 280,

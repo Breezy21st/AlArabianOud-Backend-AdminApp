@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Table } from "antd";
+import { Table, Image } from "antd";
 import { BiEdit } from "react-icons/bi";
 import { AiFillDelete } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,13 +7,19 @@ import { getProducts } from "../features/product/productSlice";
 import { Link } from "react-router-dom";
 const columns = [
   {
-    title: "SNo",
+    title: "No",
     dataIndex: "key",
+    responsive: ["sm"],
   },
   {
     title: "Products",
     render: (record) => (
       <React.Fragment>
+        {/* <Image // Use Image component to display the product image
+          src={record.imageUrl} // Assuming 'image' is the property containing the image URL
+          alt={record.title} // Provide alt text for the image
+          width={80} // Adjust the width as needed
+        /> */}
         <p>Name: {record.title}</p>
         <p>Brand: {record.brand}</p>
         <p>Category: {record.category}</p>
