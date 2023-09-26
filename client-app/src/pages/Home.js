@@ -50,6 +50,13 @@ const Home = () => {
               <Link>BUY NOW</Link>
             </div>
             </div>
+            <div className='small-banner position-relative p-3'>
+
+            </div>
+
+            <div className='small-banner position-relative p-3'>
+              
+            </div>
           </div>
           </div>
         </div>

@@ -75,9 +75,8 @@ footer .input-group-text {
 /* Home page starts here */
 
 .hero {
- margin-left: -30%;
-  width: 247%;
-  height: 40%;
+ margin-left: -35vh;
+
 }
 
 .hero-section {
@@ -152,6 +151,10 @@ button:hover {
   line-height: 28px;
   letter-spacing: 0.4;
   color: var(--color-1319221);
+}
+
+.small-banner {
+  width: 49%;
 }
 
 /* Homepage ends here */
