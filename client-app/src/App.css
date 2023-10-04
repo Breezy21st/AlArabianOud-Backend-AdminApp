@@ -122,39 +122,38 @@ button:hover {
   background-color: rgb(84, 84, 84);
 }
 
-.small-banner-content {
-  background-color: black;
-  color: white;
+
+
+/* Homepage ends here */
+
+/* home wrapper 3 */
+
+.home-wrapper-3{
   
 }
 
-.small-banner-content h4 {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  color: var(--color-b4800);
-  margin: 0 0 12px;
-  letter-spacing: 0.3px;
-  text-transform: uppercase;
+/* categories section */
+
+.categories {
+  background-color: white;
+  box-shadow: 0 0 10px #0000001a;
+  
 }
 
-.small-banner-content h5 { 
-  font-size: 42px;
-  line-height: 54px;
-  letter-spacing: -2px;
-  font-weight: 500;
-  text-transform: none;
+.cat-text {
+  text-align: center;
 }
 
-.small-banner-content p {
-  font-size: 18px;
-  line-height: 28px;
-  letter-spacing: 0.4;
-  color: var(--color-1319221);
+.categories img{
+  width: 200px;
+  height: 150px;
 }
 
-.small-banner {
-  width: 49%;
+.service-icons {
+  width: 200px;
+  height: auto;
 }
 
-/* Homepage ends here */
+/* categories section ends here */
+
+/* home-wrapper 3 ends here */

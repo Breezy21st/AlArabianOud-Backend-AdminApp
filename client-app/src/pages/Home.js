@@ -1,7 +1,15 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
 import Hero from '../images/Hero-image.png';
-import Eros from '../images/erose-blue.jpg';
+import Perfume from '../images/Perfume.jpeg';
+import Oud from '../images/oud.jpeg';
+import Scarves from '../images/scarves.jpeg';
+import Difuser from '../images/diffuser.png';
+import {CiDeliveryTruck} from 'react-icons/ci';
+import {PiConfettiThin} from 'react-icons/pi';
+import {BiSupport} from 'react-icons/bi';
+import {MdPriceCheck} from 'react-icons/md';
+import {RiSecurePaymentFill} from 'react-icons/ri';
 
 const Home = () => {
   return (
@@ -28,36 +36,118 @@ const Home = () => {
       </div>
     </section>
 
-    <section className='home-wrapper-2'>
-      <div className='container-xxl'>
-        <div className='row'>
-          <div className='col-6'>
-            <div className='main-banner position-relative p-3'>
+      <section className='home-wrapper-2 py-5'>
+        
+        <div className='container-xxl'>
+          <div className='row'>
+          <h1>Categories</h1>
+            <div className='col-12'>
+              <div className=' d-flex justify-content-between align-items-center'>
+                <div className='categories gap-3 align-items-center'>
+                    <img 
+                    class="img-fluid" 
+                    src={Perfume} 
+                    alt="Perfumes"/>
+                    <div>
+                      <h6 className="cat-text py-3">Perfumes</h6>
+                      
+                    </div>
+                </div>
 
+                <div className='categories gap-3 align-items-center'>
+                    <img 
+                    class="img-fluid"
+                    src={Oud} 
+                    alt="Perfumes"/>
+                    <div>
+                      <h6 className="cat-text py-3">Oud</h6>
+                      
+                    </div>
+                </div>
+
+                <div className='categories gap-3 align-items-center'>
+                    <img 
+                      class="img-fluid" 
+                      src={Scarves} 
+                      alt="Perfumes"
+                      />
+                    <div>
+                      <h6 className="cat-text py-3">Scarves</h6>
+                      
+                    </div>
+                </div>
+
+                <div className='categories gap-3 align-items-center'>
+                    <img 
+                    class="img-fluid"
+                    src={Difuser} 
+                    alt="Perfumes"/>
+                    <div>
+                      <h6 className="cat-text py-3">Home Fragrances</h6>
+                      
+                    </div>
+                </div>
+
+              </div>
             </div>
           </div>
-          <div className='d-flex flex-wrap justify-content-between align-items-center'>
-            <div className='small-banner position-relative p-3'>
-              <img
-                src={Eros}
-                className='img-fluid'
-                alt='main banner'
-                />
-            <div className='small-banner-content position-relative'>
-              <h4>SUPERCHARGED FOR PROS</h4>
-              <h5>VASACE EROS</h5>
-              <p>R2500</p>
-              <Link>BUY NOW</Link>
-            </div>
-            </div>
-            <div className='small-banner position-relative p-3'>
+        </div>
 
-            </div>
+      </section>
 
-            <div className='small-banner position-relative p-3'>
-              
+      <section className='home-wrapper-3 py-5'>
+        <div className='container-xxl'>
+          <div className='row'>
+            <div className='col-12'>
+              <div className='services d-flex align-items-center justify-content-between'>
+                <div className="d-flex align-items-center gap-15">
+                
+                <span className='fs-1'>
+                <CiDeliveryTruck/>
+                </span>
+                  <div>
+                    <h6>Free Shipping</h6>
+                    <p className="mb-0">From all orders over R1000</p>
+                  </div>
+                </div>
+                <div className="d-flex align-items-center gap-10">
+                <span className='fs-1'>
+                <PiConfettiThin/>
+                </span>
+                  <div>
+                    <h6>Daily Surprise Offers</h6>
+                    <p className="mb-0">Save up to 25% off</p>
+                  </div>
+                </div>
+                <div className="d-flex align-items-center gap-10">
+                <span className='fs-1'>
+                <BiSupport/>
+                </span>
+                  <div>
+                    <h6>Support 24/7</h6>
+                    <p className="mb-0">Shop with an expert</p>
+                  </div>
+                </div>
+                <div className="d-flex align-items-center gap-10">
+                <span className='fs-1'>
+                <MdPriceCheck/>
+                </span>
+                  <div>
+                    <h6>Affordable Prices</h6>
+                    <p className="mb-0">Get Factory Default Prices</p>
+                  </div>
+                </div>
+                <div className="d-flex align-items-center gap-10">
+                <span className='fs-1'>
+                <RiSecurePaymentFill/>
+                </span>
+                  <div>
+                    <h6>Secure Prices</h6>
+                    <p className="mb-0">100% Protected payments</p>
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
           </div>
         </div>
       </section>
