@@ -13,6 +13,7 @@ import {RiSecurePaymentFill} from 'react-icons/ri';
 import SpecialProduct from '../components/SpecialProduct';
 import Container from '../components/Container';
 import ProductCard from '../components/ProductCard';
+import BlogCard from '../components/BlogCard';
 
 const Home = () => {
   return (
@@ -183,6 +184,27 @@ const Home = () => {
         </div>
       </Container>
       
+      <Container class1="blog-wrapper py-5 home-wrapper-2">
+        <div className="row">
+          <div className="col-12">
+            <h3 className="section-heading">Our Latest Blogs</h3>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-3">
+            <BlogCard />
+          </div>
+          <div className="col-3">
+            <BlogCard />
+          </div>
+          <div className="col-3">
+            <BlogCard />
+          </div>
+          <div className="col-3">
+            <BlogCard />
+          </div>
+        </div>
+      </Container>
     </>
   )
 }

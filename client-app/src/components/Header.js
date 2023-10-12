@@ -33,7 +33,7 @@ const Header = () => {
           <div className='container fluid'>
             <ul className="navbar-nav  justify-content-center">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/home">HOME</a>
+                <a className="nav-link active" aria-current="page" href="/">HOME</a>
               </li>
               <li className="nav-item">
                 <a className="nav-link" href="/about">ABOUT US</a>
