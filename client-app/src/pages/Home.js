@@ -10,6 +10,9 @@ import {PiConfettiThin} from 'react-icons/pi';
 import {BiSupport} from 'react-icons/bi';
 import {MdPriceCheck} from 'react-icons/md';
 import {RiSecurePaymentFill} from 'react-icons/ri';
+import SpecialProduct from '../components/SpecialProduct';
+import Container from '../components/Container';
+import ProductCard from '../components/ProductCard';
 
 const Home = () => {
   return (
@@ -151,6 +154,35 @@ const Home = () => {
           </div>
         </div>
       </section>
+
+      <Container class1="special-wrapper py-5 home-wrapper-3">
+        <div className="row">
+          <div className="col-12">
+            <h3 className="section-heading">Special Products</h3>
+          </div>
+        </div>
+        <div className="row">
+          <SpecialProduct />
+          <SpecialProduct />
+          <SpecialProduct />
+          <SpecialProduct />
+        </div>
+      </Container>
+
+      <Container class1="popular-wrapper py-5 home-wrapper-3">
+        <div className="row">
+          <div className="col-12">
+            <h3 className="section-heading">Our Popular Products</h3>
+          </div>
+        </div>
+        <div className="row">
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+          <ProductCard />
+        </div>
+      </Container>
+      
     </>
   )
 }
