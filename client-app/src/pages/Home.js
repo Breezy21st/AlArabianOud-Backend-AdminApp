@@ -18,9 +18,7 @@ import BlogCard from '../components/BlogCard';
 const Home = () => {
   return (
     <>
-    <section className='home-wrapper-1'>
-      <div className='container-xxl'>
-        <div className='row'>
+    <Container className='home-wrapper-1'>
           <div className='col-6'>
               <div className="hero-section">
                   <img className="hero" 
@@ -36,13 +34,9 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
+    </Container>
 
-      <section className='home-wrapper-2 py-5'>
-        
-        <div className='container-xxl'>
+      <Container className='home-wrapper-2 py-5'>
           <div className='row'>
           <h1>Categories</h1>
             <div className='col-12'>
@@ -95,12 +89,11 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
+        
 
-      </section>
+      </Container>
 
-      <section className='home-wrapper-3 py-5'>
-        <div className='container-xxl'>
+      <Container className='home-wrapper-3 py-5'>
           <div className='row'>
             <div className='col-12'>
               <div className='services d-flex align-items-center justify-content-between'>
@@ -153,8 +146,7 @@ const Home = () => {
               </div>
             </div>
           </div>
-        </div>
-      </section>
+      </Container>
 
       <Container class1="special-wrapper py-5 home-wrapper-3">
         <div className="row">

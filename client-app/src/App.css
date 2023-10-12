@@ -10,6 +10,17 @@
   --color-363636: #363636;
   --color-3b4149: #3b4149;
 }
+.section-heading {
+  font-size: 26px;
+  line-height: 32px;
+  font-weight: 500;
+  margin-bottom: 30px;
+}
+.card-wrapper {
+  background-color: white;
+  box-shadow: 0 0 10px #0000001a;
+  padding: 15px;
+}
  
 body {
   font-family: "Rubik", sans-serif;
