@@ -57,7 +57,7 @@ const ProductCard = (props) => {
               dolores et quas molestias excepturi sint occaecati cupiditate non
               provident, similique sunt...
             </p>
-            <p className="price">$100.00</p>
+            <p className="price">R100.00</p>
           </div>
           <div className="action-bar position-absolute">
             <div className="d-flex flex-column gap-15">
@@ -116,7 +116,7 @@ const ProductCard = (props) => {
               dolores et quas molestias excepturi sint occaecati cupiditate non
               provident, similique sunt...
             </p>
-            <p className="price">$100.00</p>
+            <p className="price">R100.00</p>
           </div>
           <div className="action-bar position-absolute">
             <div className="d-flex flex-column gap-15">
