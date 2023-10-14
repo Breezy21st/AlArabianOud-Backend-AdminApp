@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from "react";
 import {Link} from 'react-router-dom';
 import Hero from '../images/Hero-image.png';
 import Perfume from '../images/Perfume.jpeg';
@@ -12,10 +12,22 @@ import {MdPriceCheck} from 'react-icons/md';
 import {RiSecurePaymentFill} from 'react-icons/ri';
 import SpecialProduct from '../components/SpecialProduct';
 import Container from '../components/Container';
+import { useDispatch, useSelector } from "react-redux";
+import { getAllBlogs } from "../features/blogs/blogSlice";
+import  moment from 'moment';
+// import { services } from "../utils/Data";
 import ProductCard from '../components/ProductCard';
 import BlogCard from '../components/BlogCard';
 
 const Home = () => {
+  const blogState = useSelector ((state) => state?.blog?.blog)
+  const dispatch = useDispatch();
+  useEffect(() => {
+     getBlogs() ;
+  }, []);
+  const getBlogs = () => {
+    dispatch(getAllBlogs());
+  };
   return (
     <>
     <Container className='home-wrapper-1'>
@@ -148,6 +160,26 @@ const Home = () => {
           </div>
       </Container>
 
+      {/* <Container class1="home-wrapper-3 py-5">
+        <div className="row">
+          <div className="col-12">
+            <div className="servies d-flex align-items-center justify-content-between">
+              {services?.map((i, j) => {
+                return (
+                  <div className="d-flex align-items-center gap-15" key={j}>
+                    <img src={i.image} alt="services" />
+                    <div>
+                      <h6>{i.title}</h6>
+                      <p className="mb-0">{i.tagline}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </Container> */}
+
       <Container class1="special-wrapper py-5 home-wrapper-3">
         <div className="row">
           <div className="col-12">
@@ -183,18 +215,23 @@ const Home = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-3">
-            <BlogCard />
-          </div>
-          <div className="col-3">
-            <BlogCard />
-          </div>
-          <div className="col-3">
-            <BlogCard />
-          </div>
-          <div className="col-3">
-            <BlogCard />
-          </div>
+        {
+                  blogState?.map((item, index) => {
+                    if(index < 3){
+                      return (
+                        <div key={index} className="col-3">
+                          <BlogCard 
+                            id={item?._id} 
+                            title={item?.title} 
+                            description={item?.description}
+                            image={item?.images[0]?.url}
+                            date={moment(item?.createdAt).format('MMMM Do YYYY, h:mm a')}
+                          />
+                        </div>
+                      );
+                    }
+                  })
+                }
         </div>
       </Container>
     </>
