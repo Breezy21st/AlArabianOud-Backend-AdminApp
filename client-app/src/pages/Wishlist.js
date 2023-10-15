@@ -30,7 +30,7 @@ const Wishlist = () => {
       <Container class1="wishlist-wrapper home-wrapper-2 py-5">
         <div className="row">
           {
-            wishlistState.length === 0 ? (
+            wishlistState && wishlistState.length === 0 ? (
             <div
               className="text-center fs-3"
             >
@@ -40,7 +40,7 @@ const Wishlist = () => {
             ):(
           
           
-            wishlistState?.map((item, index) => {
+           wishlistState && wishlistState?.map((item, index) => {
               
               return(
                 <div 
@@ -56,8 +56,8 @@ const Wishlist = () => {
               />
               <div className="wishlist-card-image ">
                 <img
-                  src={item?.images[0].url
-                        ? item?.images[0].url
+                  src={item?.images[0]?.url
+                        ? item?.images[0]?.url
                       : "images/watch.jpg"}
                   className="img-fluid w-100 d-block mx-auto"
                   alt="prodImage"
