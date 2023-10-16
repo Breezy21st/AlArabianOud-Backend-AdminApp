@@ -4,7 +4,7 @@ import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import ProductCard from "../components/ProductCard";
 import ReactImageZoom from "react-image-zoom";
-
+import { toast } from 'react-toastify';
 import { TbGitCompare } from "react-icons/tb";
 import { AiOutlineHeart } from "react-icons/ai";
 import { Link, useLocation } from "react-router-dom";
@@ -13,7 +13,9 @@ import watch from "../images/watch.jpg";
 import Container from "../components/Container";
 import { getAProduct } from "../features/products/productSlice";
 import {RxShadowNone} from "react-icons/rx"
+import { addProdToCart } from "../features/user/userSlice";
 const SingleProduct = () => {
+  const [count, setQuantity] = useState(1);
   const location = useLocation();
   const getProductId = location.pathname.split("/")[2];
   const dispatch = useDispatch();
@@ -23,12 +25,15 @@ const SingleProduct = () => {
     dispatch(getAProduct(getProductId)); 
   }, [dispatch, getProductId]);
 
+  const uploadCart  = () => {
+    dispatch(addProdToCart({productId: productState?._id, count, price: productState?.price}))
+  }
   const props = {
     width: 594,
     height: 600,
     zoomWidth: 600,
 
-    img: productState.images[0].url ,
+    img: productState?.images[0]?.url || watch,
   };
 
   const [orderedProduct, setorderedProduct] = useState(true);
@@ -121,14 +126,17 @@ const SingleProduct = () => {
                       className="form-control"
                       style={{ width: "70px" }}
                       id=""
+                      onChange={(e) => setQuantity(e.target.value)}
+                      value={count}
                     />
                   </div>
                   <div className="d-flex align-items-center gap-30 ms-5">
                     <button
                       className="button border-0"
-                      data-bs-toggle="modal"
-                      data-bs-target="#staticBackdrop"
+                      // data-bs-toggle="modal"
+                      // data-bs-target="#staticBackdrop"
                       type="button"
+                      onClick = {()=>{uploadCart(productState?._id)}}
                     >
                       Add to Cart
                     </button>
@@ -242,11 +250,11 @@ const SingleProduct = () => {
               <div className="reviews mt-4">
                 <div className="review">
                   <div className="d-flex gap-10 align-items-center">
-                    <h6 className="mb-0">{}</h6>
+                    <h6 className="mb-0">Rating UserName</h6>
                     <ReactStars
                       count={5}
                       size={24}
-                      value={4}
+                      value={parseFloat(productState?.totalrating)}
                       edit={false}
                       activeColor="#ffd700"
                     />
