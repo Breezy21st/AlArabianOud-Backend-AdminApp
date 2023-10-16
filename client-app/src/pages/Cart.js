@@ -6,6 +6,8 @@ import { AiFillDelete } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import Container from "../components/Container";
 
+
+// page is static currently 
 const Cart = () => {
   return (
     <>
@@ -26,13 +28,13 @@ const Cart = () => {
                   <img src={watch} className="img-fluid" alt="product image" />
                 </div>
                 <div className="w-75">
-                  <p>GDffdhg</p>
-                  <p>Size: hgf</p>
-                  <p>Color: gfd</p>
+                  <p>name/title to be put</p>
+                  
+                  
                 </div>
               </div>
               <div className="cart-col-2">
-                <h5 className="price">$ 100</h5>
+                <h5 className="price">R 100</h5>
               </div>
               <div className="cart-col-3 d-flex align-items-center gap-15">
                 <div>
@@ -50,7 +52,7 @@ const Cart = () => {
                 </div>
               </div>
               <div className="cart-col-4">
-                <h5 className="price">$ 100</h5>
+                <h5 className="price">R 100</h5>
               </div>
             </div>
           </div>
@@ -60,7 +62,7 @@ const Cart = () => {
                 Continue To Shopping
               </Link>
               <div className="d-flex flex-column align-items-end">
-                <h4>SubTotal: $ 1000</h4>
+                <h4>SubTotal: R 1000</h4>
                 <p>Taxes and shipping calculated at checkout</p>
                 <Link to="/checkout" className="button">
                   Checkout

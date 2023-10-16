@@ -4,6 +4,8 @@ import { BiArrowBack } from "react-icons/bi";
 import watch from "../images/watch.jpg";
 import Container from "../components/Container";
 
+
+// page is static as it stands currently
 const Checkout = () => {
   return (
     <>
@@ -44,7 +46,7 @@ const Checkout = () => {
               </nav>
               <h4 className="title total">Contact Information</h4>
               <p className="user-details total">
-                Navdeep Dahiya (monud0232@gmail.com)
+                Keshav Erriah (kesherriah@gmail.com)
               </p>
               <h4 className="mb-3">Shipping Address</h4>
               <form
@@ -96,7 +98,7 @@ const Checkout = () => {
                 <div className="flex-grow-1">
                   <select name="" className="form-control form-select" id="">
                     <option value="" selected disabled>
-                      Select State
+                      Select Province
                     </option>
                   </select>
                 </div>
@@ -135,28 +137,28 @@ const Checkout = () => {
                     <img className="img-fluid" src={watch} alt="product" />
                   </div>
                   <div>
-                    <h5 className="total-price">gfdhgf</h5>
-                    <p className="total-price">s / #agfgfd</p>
+                    <h5 className="total-price">Total Price</h5>
+                    <p className="total-price">R 180</p>
                   </div>
                 </div>
                 <div className="flex-grow-1">
-                  <h5 className="total">$ 100</h5>
+                  <h5 className="total">R 100</h5>
                 </div>
               </div>
             </div>
             <div className="border-bottom py-4">
               <div className="d-flex justify-content-between align-items-center">
                 <p className="total">Subtotal</p>
-                <p className="total-price">$ 10000</p>
+                <p className="total-price">R 10000</p>
               </div>
               <div className="d-flex justify-content-between align-items-center">
                 <p className="mb-0 total">Shipping</p>
-                <p className="mb-0 total-price">$ 10000</p>
+                <p className="mb-0 total-price">R 10000</p>
               </div>
             </div>
             <div className="d-flex justify-content-between align-items-center border-bootom py-4">
               <h4 className="total">Total</h4>
-              <h5 className="total-price">$ 10000</h5>
+              <h5 className="total-price">R 10000</h5>
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ import Contact from './pages/Contact';
 import About from './pages/About';
 import OurStore from "./pages/OurStore";
 import Blog from "./pages/Blog";
-import CompareProduct from "./pages/CompareProduct";
+
 import Wishlist from "./pages/Wishlist";
 import Login from "./pages/Login";
 import Forgotpassword from "./pages/Forgotpassword";
@@ -37,7 +37,7 @@ function App() {
                 <Route path="blog/:id" element={<SingleBlog />} />
                 <Route path="cart" element={<Cart />} />
                 <Route path="checkout" element={<Checkout />} />
-                <Route path="compare-product" element={<CompareProduct />} />
+                
                 <Route path="wishlist" element={<Wishlist />} />
                 <Route path="login" element={<Login />} />
                 <Route path="forgot-password" element={<Forgotpassword />} />

@@ -10,6 +10,11 @@
   --color-363636: #363636;
   --color-3b4149: #3b4149;
 }
+
+.errors{
+  color: red;
+  font-size: 12px;
+}
 .section-heading {
   font-size: 26px;
   line-height: 32px;

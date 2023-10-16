@@ -59,12 +59,20 @@ const Header = () => {
             
             
       <div className='nav-icons d-flex align-items-center justify-content-end gap-2'>
-        <Link className='nav-item text-white'>
+        <Link to={'/login/'} className='nav-item text-white'>
           <span className='fs-9 text-white'>
              LOGIN
           </span>
         </Link>
+        <span> | </span>
+        <Link to={'/login/'} className='nav-item text-white'>
+          <span className='fs-9 text-white'>
+             SIGNUP
+          </span>
+        </Link>
 
+
+    {/* search functionality To be added */}
         <Link className='nav-item text-white'>
           <span className=' fs-9 text-white'>
             <BsSearch />
@@ -73,7 +81,7 @@ const Header = () => {
 
         <Link className='nav-item text-white'>
           <div className='d-flex flex-column gap-1 text-center'>
-            <span className='badge bg-white text-dark fs-6'>
+            <span className=' text-light fs-6'>
               <AiOutlineShoppingCart/> 0
             </span>
           </div>

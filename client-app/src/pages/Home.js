@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import {Link, useLocation} from 'react-router-dom';
+import {Link, useLocation, useNavigate} from 'react-router-dom';
 import Hero from '../images/Hero-image.png';
 import Perfume from '../images/Perfume.jpeg';
 import Oud from '../images/oud.jpeg';
@@ -31,6 +31,7 @@ const Home = (props) => {
   const blogState = useSelector ((state) => state?.blog?.blog);
   const productState = useSelector ((state) => state.product.product)
   let location = useLocation();
+  const navigate = useNavigate();
   const { grid, data } = props;
   
 
@@ -73,6 +74,8 @@ const Home = (props) => {
           </div>
     </Container>
 
+
+      {/* To be made Dynamic */}
       <Container className='home-wrapper-2 py-5'>
           <div className='row'>
           <h1>Categories</h1>
@@ -185,65 +188,15 @@ const Home = (props) => {
           </div>
       </Container>
 
-      {/* <Container class1="home-wrapper-3 py-5">
-        <div className="row">
-          <div className="col-12">
-            <div className="servies d-flex align-items-center justify-content-between">
-              {services?.map((i, j) => {
-                return (
-                  <div className="d-flex align-items-center gap-15" key={j}>
-                    <img src={i.image} alt="services" />
-                    <div>
-                      <h6>{i.title}</h6>
-                      <p className="mb-0">{i.tagline}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        </div>
-      </Container> */}
+      
 
-      <Container class1="special-wrapper py-5 home-wrapper-3">
+      <Container featured-wrapper py-5 home-wrapper-2>
         <div className="row">
           <div className="col-12">
-            <h3 className="section-heading">Special Products</h3>
-          </div>
-        </div>
-        <div className="row">
-          {
+            <h3 className="section-heading"> Featured Products</h3>
+            {
             productState && productState?.map((item, index) => {
-              if (item.tags === "special") {
-                return(
-                  <SpecialProduct 
-                    key= {index} 
-                    brand = {item?.brand}
-                    title={item?.title} 
-                    totalrating = {parseFloat(item?.totalrating)}
-                    price= {item?.price}
-                    sold={item?.sold}
-                    quantity={item?.quantity}
-                    />
-                )
-              }
-              
-            })
-          }
-         
-        </div>
-      </Container>
-
-      <Container class1="popular-wrapper py-5 home-wrapper-3">
-        <div className="row">
-          <div className="col-12">
-            <h3 className="section-heading">Our Popular Products</h3>
-          </div>
-        </div>
-        <div className="row">
-        {
-            productState && productState?.map((item, index) => {
-              if (item.tags === "popular") {
+              if (item.tags === "featured") {
                 return(
                   <div
           key={index}
@@ -251,14 +204,7 @@ const Home = (props) => {
             "col-3"
           } 
         >
-          <Link
-            to={`${
-              location.pathname === "/"
-                ? "/product/:id"
-                : location.pathname === "/product/:id"
-                ? "/product/:id"
-                : ":id"
-            }`}
+          <div
             className="product-card position-relative"
           >
             <div className="wishlist-icon position-absolute">
@@ -309,14 +255,131 @@ const Home = (props) => {
                   <img src={prodcompare} alt="compare" />
                 </button>
                 <button className="border-0 bg-transparent">
-                  <img src={view} alt="view" />
+                  <img onClick={() => navigate("product/" +item?._id)} src={view} alt="view" />
                 </button>
                 <button className="border-0 bg-transparent">
                   <img src={addcart} alt="addcart" />
                 </button>
               </div>
             </div>
-          </Link>
+          </div>
+        </div>
+                )
+              }
+              
+            })
+          }
+          </div>
+        </div>
+      </Container>
+
+      <Container class1="special-wrapper py-5 home-wrapper-3">
+        <div className="row">
+          <div className="col-12">
+            <h3 className="section-heading">Special Products</h3>
+          </div>
+        </div>
+        <div className="row">
+          {
+            productState && productState?.map((item, index) => {
+              if (item.tags === "special") {
+                return(
+                  <SpecialProduct 
+                    key= {index} 
+                    id = {item?._id}
+                    brand = {item?.brand}
+                    title={item?.title} 
+                    totalrating = {parseFloat(item?.totalrating)}
+                    price= {item?.price}
+                    sold={item?.sold}
+                    quantity={item?.quantity}
+                    />
+                )
+              }
+              
+            })
+          }
+         
+        </div>
+      </Container>
+
+      <Container class1="popular-wrapper py-5 home-wrapper-3">
+        <div className="row">
+          <div className="col-12">
+            <h3 className="section-heading">Our Popular Products</h3>
+          </div>
+        </div>
+        <div className="row">
+        {
+            productState && productState?.map((item, index) => {
+              if (item.tags === "popular") {
+                return(
+                  <div
+          key={index}
+          className={
+            "col-3"
+          } 
+        >
+          <div
+            
+            className="product-card position-relative"
+          >
+            <div className="wishlist-icon position-absolute">
+              <button 
+                className="border-0 bg-transparent" 
+                onClick={(e)=>{addToWish(item?._id)}}
+              >
+                <img src={wish} alt="wishlist" />
+              </button>
+            </div>
+            <div className="product-image">
+              <img 
+                src={item?.images[0]?.url} 
+                className="img-fluid mx-auto" 
+                alt="product" 
+                width={160}
+              />
+              <img src={watch2} 
+                className="img-fluid mx-auto" 
+                alt="product2" 
+                width={160}
+              />
+            </div>
+            <div className="product-details">
+              <h6 className="brand">{item?.brand}</h6>
+              <h5 className="product-title">
+                {item?.title}
+              </h5>
+              <ReactStars
+                count={5}
+                size={24}
+                value={parseFloat(item?.totalrating)}
+                edit={false}
+                activeColor="#ffd700"
+              />
+              <p className={`description ${
+                grid === 12 ? "d-block" : "d-none"
+                }`}
+                dangerouslySetInnerHTML={{ __html: item?.description}}
+                >
+                
+              </p>
+              <p className="price">R {item?.price}</p>
+            </div>
+            <div className="action-bar position-absolute">
+              <div className="d-flex flex-column gap-15">
+                <button className="border-0 bg-transparent">
+                  <img src={prodcompare} alt="compare" />
+                </button>
+                <button className="border-0 bg-transparent">
+                  <img onClick={() => navigate("product/" +item?._id)} src={view} alt="view" />
+                </button>
+                <button className="border-0 bg-transparent">
+                  <img src={addcart} alt="addcart" />
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
                 )
               }
