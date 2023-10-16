@@ -46,7 +46,7 @@ const Header = () => {
                   PRODUCTS
                 </a>
                 <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a className="dropdown-item" href="/cat1">PERFUME CAT 1</a></li>
+                  <li><a className="dropdown-item" href="/product">All Products</a></li>
                   <li><a className="dropdown-item" href="/cat2">PERFUME CAT 2</a></li>
                   <li><a className="dropdown-item" href="/cat3">PERFUME CAT 3</a></li>
                 </ul>

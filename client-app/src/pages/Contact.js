@@ -40,6 +40,8 @@ const Contact = () => {
       <Container class1="contact-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">
+
+            {/* need to fix the maps API from google developer console */}
             <iframe
               src="https://www.google.com/maps/embed/v1/view?zoom=17&center=-25.8361%2C28.1397&key=AIzaSyAE_ImBAIcv-lrjDrFAHdh0-ClON65vdQE"
               width="600"
