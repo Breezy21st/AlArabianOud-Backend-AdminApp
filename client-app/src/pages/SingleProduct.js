@@ -133,8 +133,8 @@ const SingleProduct = () => {
                   <div className="d-flex align-items-center gap-30 ms-5">
                     <button
                       className="button border-0"
-                      // data-bs-toggle="modal"
-                      // data-bs-target="#staticBackdrop"
+                      data-bs-toggle="modal"
+                      data-bs-target="#staticBackdrop"
                       type="button"
                       onClick = {()=>{uploadCart(productState?._id)}}
                     >
