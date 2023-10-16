@@ -65,7 +65,7 @@ const Header = () => {
           </span>
         </Link>
         <span> | </span>
-        <Link to={'/login/'} className='nav-item text-white'>
+        <Link to={'/signup/'} className='nav-item text-white'>
           <span className='fs-9 text-white'>
              SIGNUP
           </span>
