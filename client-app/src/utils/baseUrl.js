@@ -9,4 +9,4 @@ if (process.env.NODE_ENV === 'production') {
 }
 export {base_url};
 
-// export const base_url = 'http://localhost:5000/api/';
+
