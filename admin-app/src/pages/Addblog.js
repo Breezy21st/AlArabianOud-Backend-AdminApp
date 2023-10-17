@@ -164,7 +164,7 @@ const Addblog = () => {
                   <div {...getRootProps()}>
                     <input {...getInputProps()} />
                     <p>
-                      Drag 'n' drop some files here, or click to select files
+                       Click here to select files
                     </p>
                   </div>
                 </section>
