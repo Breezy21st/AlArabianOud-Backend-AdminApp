@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import { BsSearch, BsPerson } from 'react-icons/bs';
 import { AiOutlineShoppingCart, AiOutlineHeart } from 'react-icons/ai';
 import Logo from '../images/Logo.png';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Header = () => {
+
+  const dispatch = useDispatch();
+  const cartState = useSelector(state => state.auth.cartProducts)
+  const [total, setTotal] = useState(null);
+
+useEffect(() => {
+  let sum = 0;
+
+  for (let index = 0; index < cartState.length; index++) {
+    sum = sum + (Number(cartState[index].quantity) * Number(cartState[index].price))
+    setTotal(sum);
+  }
+}, [cartState])
+
   return (
     <>
      <header className="header-top-strip py-2">
@@ -79,11 +94,13 @@ const Header = () => {
           </span>
         </Link>
 
-        <Link className='nav-item text-white'>
+        <Link to={'/cart/'} className='nav-item text-white'>
           <div className='d-flex flex-column gap-1 text-center'>
-            <span className=' text-light fs-6'>
-              <AiOutlineShoppingCart/> 0
+          
+            <span className='badge bg-white text-dark fs-6'> 
+            <AiOutlineShoppingCart/> {cartState?.length ? cartState?.length : 0}
             </span>
+            <p className='mb-0'>R {total ? total : 0}</p>
           </div>
         </Link>
       

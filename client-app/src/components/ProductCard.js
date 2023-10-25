@@ -15,7 +15,7 @@ const ProductCard = (props) => {
 
   const dispatch = useDispatch();
 
-  console.log(data);
+  
 
   let location = useLocation();
 
