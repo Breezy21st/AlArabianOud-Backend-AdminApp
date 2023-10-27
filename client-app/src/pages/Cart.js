@@ -26,7 +26,7 @@ const Cart = () => {
       dispatch(updateCartProduct({cartItemId: productUpdateDetail?.cartItemId, quantity:productUpdateDetail?.quantity}))
       setTimeout(() => {
         dispatch(getUserCart())
-      }, 20);
+      }, 200);
     }
   }, [productUpdateDetail])
   
@@ -34,7 +34,7 @@ const Cart = () => {
     dispatch(deleteCartProduct(id))
     setTimeout(() => {
       dispatch(getUserCart())
-    }, 20 )
+    }, 200 )
   }
 
 useEffect(() => {
@@ -42,9 +42,6 @@ useEffect(() => {
  for (let index = 0; index < userCartState.length; index++) {
   sum = sum + (Number(userCartState[index].quantity) * userCartState[index].price)
   setTotalAmount(sum);
-  setTimeout(() => {
-    dispatch(getUserCart())
-  }, 20 )
  }
 }, [userCartState])
 
