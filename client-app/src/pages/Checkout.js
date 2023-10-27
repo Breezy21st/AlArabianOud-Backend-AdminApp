@@ -291,7 +291,7 @@ const Checkout = () => {
                 </div>
               </div>
                   )
-              } )) : (<p></p>) 
+              } )) : (<p> No Items to checkout</p>) 
               }
               
             </div>

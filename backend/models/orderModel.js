@@ -3,50 +3,86 @@ const mongoose = require("mongoose"); // Erase if already required
 // Declare the Schema of the Mongo model
 var orderSchema = new mongoose.Schema(
   {
-    products: [
+    user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true
+    },
+    shippingInfo: {
+      firstName: {
+        type: String,
+        required: true
+      },
+      lastName: {
+        type: String,
+        required: true
+      },
+      address: {
+        type: String,
+        required: true
+      },
+      city: {
+        type: String,
+        required: true
+      },
+      province: {
+        type: String,
+        required: true
+      },
+      other: {
+        type: String,
+        required: true
+      },
+      zipcode: {
+        type: Number,
+        required: true
+      },
+    },
+    paymentInfo: {
+      payfastOrderId: {
+        type: String,
+        required: true
+      },
+      payfastPaymentId: {
+        type: String,
+        required: true
+      }
+    },
+    OrderItems: [
       {
         product: {
           type: mongoose.Schema.Types.ObjectId,
           ref: "Product",
+          required: true
         },
-        count: Number,
-        color: String,
-      },
+        quantity: {
+          type: Number,
+          required: true
+        },
+        price: {
+          type: Number,
+          required: true
+        }
+      }
     ],
-    paidAt:{
-      type: Date,
-      default:Date.now()
-    },
-    month: {
-      type: String,
-      default: new Date().getMonth()
-    },
-    totalAfterDiscount: {
-      type: Number,
-      default: 0,
+    paidAt: {
+      type:Date,
+      default: Date.now()
     },
     totalPrice: {
       type: Number,
-      default: 0,
+      required: true
     },
-    paymentIntent: {},
+    totalPriceAfterDiscount: {
+      type: Number,
+      required: true
+    },
     orderStatus: {
       type: String,
-      default: "Not Processed",
-      enum: [
-        "Not Processed",
-        "Cash on Delivery",
-        "Processing",
-        "Dispatched",
-        "Cancelled",
-        "Delivered",
-      ],
-    },
-    orderby: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-    },
+      defualt: "Ordered"
+    }
   },
+  
   {
     timestamps: true,
   }
