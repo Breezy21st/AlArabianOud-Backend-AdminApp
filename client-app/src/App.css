@@ -15,21 +15,20 @@
   color: red;
   font-size: 12px;
 }
-<<<<<<< HEAD
+
 
 .error{
   color: red;
   font-size: 12px;
 }
-=======
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
+
 .section-heading {
   font-size: 26px;
   line-height: 32px;
   font-weight: 500;
   margin-bottom: 30px;
 }
-<<<<<<< HEAD
+
 
 .background{
   background-image: url("../src/images/Rectangle 32.png");
@@ -38,8 +37,7 @@
   background-size: cover;
 }
 
-=======
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
+
 .card-wrapper {
   background-color: white;
   box-shadow: 0 0 10px #0000001a;
@@ -77,10 +75,7 @@ border-color: inherit;
 
 }
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 .navbar {
   background-color: black;
 }
@@ -125,7 +120,7 @@ footer .input-group-text {
 
 .text-container {
   position: absolute;
-<<<<<<< HEAD
+
   color: white; /* White text color */
   text-align: left;
   width: 100%; /* Set full width */
@@ -147,7 +142,7 @@ h1 {
 h6 {
   font-size: 1.2rem;
   margin-bottom: 1rem;
-=======
+
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
