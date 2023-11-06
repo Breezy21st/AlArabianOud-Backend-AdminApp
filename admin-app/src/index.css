@@ -1,0 +1,103 @@
+body{
+  font-family: Roboto, sans-serif;
+  
+}
+
+.trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+  
+}
+
+.trigger:hover {
+  color: #1890ff;
+
+}
+
+.logo {
+  margin: 16px;
+}
+
+
+.ant-layout{
+  min-height: 100vh;
+  
+}
+
+.ant-menu{
+  background-color: black !important;
+}
+
+.ant-menu-dark .ant-menu-item-selected{
+background-color: #ffd333 !important;
+color: black;
+
+}
+
+.ant-layout-sider{
+  flex: 0 0 250px !important;
+  max-width: 250px !important;
+  min-width: 250px !important;
+  width: 250px !important;
+  background-color: black !important;
+}
+
+.ant-layout-sider-collapsed {
+ flex: 0 0 80px !important;
+  max-width: 80px !important;
+  min-width: 80px !important;
+  width: 80px !important;
+  background-color: black !important;
+}
+
+.sm-logo {
+  display: none;
+  transform: scaleX(1);
+  transition: ease-in-out .3s;
+}
+
+.lg-logo{
+  transform: scaleX(1);
+  transition: ease-in 0.2s;
+}
+
+.ant-layout-sider-collapsed .sm-logo{
+  display: block;
+  
+}
+
+.ant-layout-sider-collapsed .lg-logo{
+  display: none;
+}
+
+.main{
+  overflow-y: scroll;
+  background-color: transparent !important;
+}
+
+.ant-menu-title-content {
+  font-size: 16px;
+}
+
+.ant-layout-header h5{
+  line-height: 30px;
+  font-size: 14px;
+}
+
+.ant-layout-header p {
+  line-height: 20px;
+  font-size: 13px;
+}
+
+.ant-layout-header div .badge{
+  top: 16px;
+  right: -6px;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
