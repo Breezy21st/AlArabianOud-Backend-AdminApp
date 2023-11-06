@@ -8,7 +8,10 @@ import * as yup from 'yup';
 import {useFormik} from 'formik';
 import {useDispatch, useDsipatch} from 'react-redux';
 import {createQuery} from '../features/contact/contactSlice'
+<<<<<<< HEAD
 import CustomInput from "../components/CustomInput";
+=======
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 
 const contactSchema = yup.object({
   name: yup.string().defined("Name is Required"),
@@ -56,6 +59,7 @@ const Contact = () => {
           <div className="col-12 mt-5">
             <div className="contact-inner-wrapper d-flex justify-content-between ">
               <div>
+<<<<<<< HEAD
                 <h3 className="contact-title mb-4">Contact us</h3>
                 <form action="" onSubmit={formik.handleSubmit} className="d-flex flex-column gap-15">
                   <div>
@@ -64,6 +68,15 @@ const Contact = () => {
                       label="Full Name"
                       className="form-control"
                       placeholder="Enter your full name"
+=======
+                <h3 className="contact-title mb-4">Contact</h3>
+                <form action="" onSubmit={formik.handleSubmit} className="d-flex flex-column gap-15">
+                  <div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Name"
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
                       name="name"
                       onChange = {formik.handleChange("name")}
                       onBlur = {formik.handleBlur("name")}
@@ -76,11 +89,18 @@ const Contact = () => {
                     </div>
                   </div>
                   <div>
+<<<<<<< HEAD
                     <CustomInput
                       type="email"
                       label="Email Address"
                       className="form-control"
                       placeholder="Enter your email address"
+=======
+                    <input
+                      type="email"
+                      className="form-control"
+                      placeholder="Email"
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
                       name = "email"
                       onChange = {formik.handleChange("email")}
                       onBlur = {formik.handleBlur("email")}
@@ -93,11 +113,18 @@ const Contact = () => {
                     </div>
                   </div>
                   <div>
+<<<<<<< HEAD
                     <CustomInput
                       type="tel"
                       label="Mobile Number"
                       className="form-control"
                       placeholder="Enter your mobile number"
+=======
+                    <input
+                      type="tel"
+                      className="form-control"
+                      placeholder="Mobile Number"
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
                       name = "mobile"
                       onChange = {formik.handleChange("mobile")}
                       onBlur = {formik.handleBlur("mobile")}
@@ -110,6 +137,7 @@ const Contact = () => {
                     </div>
                   </div>
                   <div>
+<<<<<<< HEAD
                     Comments
                     <textarea
 
@@ -118,6 +146,15 @@ const Contact = () => {
                       cols="30"
                       rows="4"
                       placeholder="Type your comments here"
+=======
+                    <textarea
+                     
+                      id=""
+                      className="w-100 form-control"
+                      cols="30"
+                      rows="4"
+                      placeholder="Comments"
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
                       name = "comment"
                       onChange = {formik.handleChange("comment")}
                       onBlur = {formik.handleBlur("comment")}
@@ -150,7 +187,11 @@ const Contact = () => {
                     </li>
                     <li className="mb-3 d-flex gap-15 align-items-center">
                       <AiOutlineMail className="fs-5" />
+<<<<<<< HEAD
                       <a href="mailto:info@alarabianoud.co.za" >
+=======
+                      <a href="info@alarabianoud.co.za">
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
                         info@alarabianoud.co.za
                       </a>
                     </li>

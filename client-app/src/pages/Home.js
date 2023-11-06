@@ -62,17 +62,28 @@ const Home = (props) => {
                   <img className="hero" 
                     alt="hero" 
                     src={Hero} />
+<<<<<<< HEAD
                 <div className='text-container' style={{ textAlign: 'left',  }}>
                   <h1>Discover the Magic of Arabian Oud - Elevate Your Senses with the Finest Oud Perfumes and Oils. 
                   </h1>
                   <br></br>
                   <h6>Shop Now for Timeless Elegance and Unforgettable Fragrance Experiences.</h6>
                   <button href="/product" > Shop Now</button>
+=======
+                <div className='text-container'>
+                  <h1>LOREM IPSUM DOLOR SIT AMET,
+                      CONSECTETUR ADIPISCING ELIT.
+                  </h1>
+                  <br></br>
+                  <h6>LOREM</h6>
+                  <button>BUY NOW</button>
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
               </div>
             </div>
           </div>
     </Container>
 
+<<<<<<< HEAD
     <Container className='home-wrapper-3 ' >
           <div className='row'>
             <div className='col-12'>
@@ -135,6 +146,16 @@ const Home = (props) => {
             <div className='col-12'>
               <div className=' d-flex justify-content-between align-items-center'>
                 <div className='categories gap-3 align-items-center pt-2 '>
+=======
+
+      {/* To be made Dynamic */}
+      <Container className='home-wrapper-2 py-5'>
+          <div className='row'>
+          <h1>Categories</h1>
+            <div className='col-12'>
+              <div className=' d-flex justify-content-between align-items-center'>
+                <div className='categories gap-3 align-items-center'>
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
                     <img 
                     className="img-fluid" 
                     src={Perfume} 
@@ -186,6 +207,7 @@ const Home = (props) => {
 
       </Container>
 
+<<<<<<< HEAD
       
 
       
@@ -195,6 +217,69 @@ const Home = (props) => {
           <div className="col-12">
             <h1> Featured Products</h1>
             <div className="row">
+=======
+      <Container className='home-wrapper-3 py-5'>
+          <div className='row'>
+            <div className='col-12'>
+              <div className='services d-flex align-items-center justify-content-between'>
+                <div className="d-flex align-items-center gap-15">
+                
+                <span className='fs-1'>
+                <CiDeliveryTruck/>
+                </span>
+                  <div>
+                    <h6>Free Shipping</h6>
+                    <p className="mb-0">From all orders over R1000</p>
+                  </div>
+                </div>
+                <div className="d-flex align-items-center gap-10">
+                <span className='fs-1'>
+                <PiConfettiThin/>
+                </span>
+                  <div>
+                    <h6>Daily Surprise Offers</h6>
+                    <p className="mb-0">Save up to 25% off</p>
+                  </div>
+                </div>
+                <div className="d-flex align-items-center gap-10">
+                <span className='fs-1'>
+                <BiSupport/>
+                </span>
+                  <div>
+                    <h6>Support 24/7</h6>
+                    <p className="mb-0">Shop with an expert</p>
+                  </div>
+                </div>
+                <div className="d-flex align-items-center gap-10">
+                <span className='fs-1'>
+                <MdPriceCheck/>
+                </span>
+                  <div>
+                    <h6>Affordable Prices</h6>
+                    <p className="mb-0">Get Factory Default Prices</p>
+                  </div>
+                </div>
+                <div className="d-flex align-items-center gap-10">
+                <span className='fs-1'>
+                <RiSecurePaymentFill/>
+                </span>
+                  <div>
+                    <h6>Secure Prices</h6>
+                    <p className="mb-0">100% Protected payments</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      </Container>
+
+      
+
+      <Container featured-wrapper py-5 home-wrapper-2>
+        <div className="row">
+          <div className="col-12">
+            <h3 className="section-heading"> Featured Products</h3>
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
             {
             productState && productState?.map((item, index) => {
               if (item.tags === "featured") {
@@ -202,7 +287,11 @@ const Home = (props) => {
                   <div
           key={index}
           className={
+<<<<<<< HEAD
             "col-lg-3 col-md-4 col-sm-6 col-12 mb-4"
+=======
+            "col-3"
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
           } 
         >
           <div
@@ -252,11 +341,23 @@ const Home = (props) => {
             </div>
             <div className="action-bar position-absolute">
               <div className="d-flex flex-column gap-15">
+<<<<<<< HEAD
                 
                 <button className="border-0 bg-transparent">
                   <img onClick={() => navigate("product/" +item?._id)} src={view} alt="view" />
                 </button>
                 
+=======
+                <button className="border-0 bg-transparent">
+                  <img src={prodcompare} alt="compare" />
+                </button>
+                <button className="border-0 bg-transparent">
+                  <img onClick={() => navigate("product/" +item?._id)} src={view} alt="view" />
+                </button>
+                <button className="border-0 bg-transparent">
+                  <img src={addcart} alt="addcart" />
+                </button>
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
               </div>
             </div>
           </div>
@@ -268,13 +369,20 @@ const Home = (props) => {
           }
           </div>
         </div>
+<<<<<<< HEAD
       </div>
+=======
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
       </Container>
 
       <Container class1="special-wrapper py-5 home-wrapper-3">
         <div className="row">
           <div className="col-12">
+<<<<<<< HEAD
             <h3 className="section-heading">Products on Special</h3>
+=======
+            <h3 className="section-heading">Special Products</h3>
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
           </div>
         </div>
         <div className="row">
@@ -366,11 +474,23 @@ const Home = (props) => {
             </div>
             <div className="action-bar position-absolute">
               <div className="d-flex flex-column gap-15">
+<<<<<<< HEAD
                 
                 <button className="border-0 bg-transparent">
                   <img onClick={() => navigate("product/" +item?._id)} src={view} alt="view" />
                 </button>
                 
+=======
+                <button className="border-0 bg-transparent">
+                  <img src={prodcompare} alt="compare" />
+                </button>
+                <button className="border-0 bg-transparent">
+                  <img onClick={() => navigate("product/" +item?._id)} src={view} alt="view" />
+                </button>
+                <button className="border-0 bg-transparent">
+                  <img src={addcart} alt="addcart" />
+                </button>
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
               </div>
             </div>
           </div>
@@ -383,7 +503,11 @@ const Home = (props) => {
         </div>
       </Container>
       
+<<<<<<< HEAD
       {/* <Container class1="blog-wrapper py-5 home-wrapper-2">
+=======
+      <Container class1="blog-wrapper py-5 home-wrapper-2">
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
         <div className="row">
           <div className="col-12">
             <h3 className="section-heading">Our Latest Blogs</h3>
@@ -408,7 +532,11 @@ const Home = (props) => {
                   })
                 }
         </div>
+<<<<<<< HEAD
       </Container> */}
+=======
+      </Container>
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
     </>
   )
 }

@@ -169,7 +169,15 @@ const SingleProduct = () => {
                   </div>
                 </div>
                 <div className="d-flex align-items-center gap-15">
+<<<<<<< HEAD
                   
+=======
+                  <div>
+                    <a href="">
+                      <TbGitCompare className="fs-5 me-2" /> Add to Compare
+                    </a>
+                  </div>
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
                   <div>
                     <a href="">
                       <AiOutlineHeart className="fs-5 me-2" /> Add to Wishlist
@@ -233,7 +241,17 @@ const SingleProduct = () => {
                     <p className="mb-0">Based on  {parseFloat(productState?.ratings)} Reviews</p>
                   </div>
                 </div>
+<<<<<<< HEAD
                 {/* this not working need to fix */}
+=======
+                {orderedProduct && (
+                  <div>
+                    <a className="text-dark text-decoration-underline" href="">
+                      Write a Review
+                    </a>
+                  </div>
+                )}
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
               </div>
               <div className="review-form py-4">
                 <h4>Write a Review</h4>
@@ -287,7 +305,20 @@ const SingleProduct = () => {
           </div>
         </div>
       </Container>
+<<<<<<< HEAD
       
+=======
+      <Container class1="popular-wrapper py-5 home-wrapper-2">
+        <div className="row">
+          <div className="col-12">
+            <h3 className="section-heading">Our Popular Products</h3>
+          </div>
+        </div>
+        <div className="row">
+          <ProductCard />
+        </div>
+      </Container>
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 
       <div
         className="modal fade"

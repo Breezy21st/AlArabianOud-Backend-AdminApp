@@ -43,7 +43,62 @@ const OurStore = () => {
             </div>
 
             {/* To be made Dynamic */}
+<<<<<<< HEAD
             
+=======
+            <div className="filter-card mb-3">
+              <h3 className="filter-title">Filter By</h3>
+              <div>
+                <h5 className="sub-title">Availablity</h5>
+                <div>
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id=""
+                    />
+                    <label className="form-check-label" htmlFor="">
+                      In Stock (1)
+                    </label>
+                  </div>
+                  <div className="form-check">
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      value=""
+                      id=""
+                    />
+                    <label className="form-check-label" htmlFor="">
+                      Out of Stock(0)
+                    </label>
+                  </div>
+                </div>
+                <h5 className="sub-title">Price</h5>
+                <div className="d-flex align-items-center gap-10">
+                  <div className="form-floating">
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="floatingInput"
+                      placeholder="From"
+                    />
+                    <label htmlFor="floatingInput">From</label>
+                  </div>
+                  <div className="form-floating">
+                    <input
+                      type="email"
+                      className="form-control"
+                      id="floatingInput1"
+                      placeholder="To"
+                    />
+                    <label htmlFor="floatingInput1">To</label>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
             <div className="filter-card mb-3">
               <h3 className="filter-title">Product Tags</h3>
               <div>

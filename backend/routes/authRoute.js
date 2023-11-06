@@ -31,7 +31,10 @@ const { createUser,
     removeProductFromCart,
     updateProductQuantityFromCart} = require('../controller/userCtrl');
 const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware');
+<<<<<<< HEAD
 const { checkout, paymentVerification } = require('../controller/paymentCtrl');
+=======
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 const router = express.Router();
 
 
@@ -41,8 +44,11 @@ router.put('/reset-password/:token', resetPassword);
 router.put('/password', authMiddleware, updatePassword);
 router.post('/login', loginUserCtrl);
 router.post("/admin-login", loginAdmin);
+<<<<<<< HEAD
 router.post('/order/checkout', authMiddleware, checkout);
 router.post('/oder/paymentVerification', authMiddleware, paymentVerification);
+=======
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 router.post("/cart", authMiddleware, userCart);
 // router.post("/cart/applycoupon", authMiddleware, applyCoupon);
 router.post("/cart/create-order", authMiddleware, createOrder);

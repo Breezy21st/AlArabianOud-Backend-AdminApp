@@ -15,17 +15,21 @@
   color: red;
   font-size: 12px;
 }
+<<<<<<< HEAD
 
 .error{
   color: red;
   font-size: 12px;
 }
+=======
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 .section-heading {
   font-size: 26px;
   line-height: 32px;
   font-weight: 500;
   margin-bottom: 30px;
 }
+<<<<<<< HEAD
 
 .background{
   background-image: url("../src/images/Rectangle 32.png");
@@ -34,6 +38,8 @@
   background-size: cover;
 }
 
+=======
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 .card-wrapper {
   background-color: white;
   box-shadow: 0 0 10px #0000001a;
@@ -71,7 +77,10 @@ border-color: inherit;
 
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 .navbar {
   background-color: black;
 }
@@ -116,6 +125,7 @@ footer .input-group-text {
 
 .text-container {
   position: absolute;
+<<<<<<< HEAD
   color: white; /* White text color */
   text-align: left;
   width: 100%; /* Set full width */
@@ -137,36 +147,73 @@ h1 {
 h6 {
   font-size: 1.2rem;
   margin-bottom: 1rem;
+=======
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white; /* White text color */
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+h6 {
+  font-size: 16px;
+  margin-bottom: 10px;
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 }
 
 button {
   background-color: rgb(255, 242, 0); /* Yellow background */
+<<<<<<< HEAD
   color: black; /* White text color */
+=======
+  color: white; /* White text color */
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
   border: none;
   padding: 10px 20px;
   font-size: 18px;
   cursor: pointer;
   border-radius: 15px;
+<<<<<<< HEAD
   
 }
 
 button:hover { 
   color: black;
   background-color: gold;
+=======
+}
+
+button:hover { 
+  color: white;
+  background-color: orange;
+}
+
+.home-wrapper-2 {
+  background-color: rgb(84, 84, 84);
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 }
 
 
 
+<<<<<<< HEAD
 .input-container {
   border-radius: 10px; /* You can adjust the border radius value as per your preference */
   border: 2px solid #ccc; /* Add border style if needed */
   margin-bottom: 5px; /* Add margin if needed */
 }
 
+=======
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 /* Homepage ends here */
 
 /* home wrapper 3 */
 
+<<<<<<< HEAD
 .cat-container {
   background-color: #252525;
   width: ;
@@ -179,6 +226,18 @@ button:hover {
   background-color: black;
   box-shadow: 0 0 120px #0000001a;
   color: white;
+=======
+.home-wrapper-3{
+  
+}
+
+/* categories section */
+
+.categories {
+  background-color: white;
+  box-shadow: 0 0 10px #0000001a;
+  
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 }
 
 .cat-text {
@@ -207,7 +266,11 @@ button:hover {
   background-color: rgb(255, 255, 255);
   
   /* offset-x | offset-y | blur-radius | spread-radius | color */
+<<<<<<< HEAD
   box-shadow: 0 0 120px #0000001a;
+=======
+  box-shadow: 0 0 5px 0 #000000;
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 }
 
 /* Special Product ends here */
@@ -220,7 +283,10 @@ button:hover {
   border-radius: 10px;
   overflow: hidden;
   width: 100%;
+<<<<<<< HEAD
   box-shadow: 0 0 120px #0000001a;
+=======
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 }
 .product-card .product-image {
   height: 270px;
@@ -437,6 +503,7 @@ button:hover {
   padding: 10px 0px;
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
+<<<<<<< HEAD
 
 .dropdown-menu{
   background-color: black;
@@ -446,6 +513,10 @@ button:hover {
 .dropdown-item {
   color: white;
 }
+=======
+/* Compare Product Page end here */
+
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 /*  auth card */
 
 .auth-card {
@@ -653,6 +724,9 @@ button:hover {
   color: var(--color-777777);
 }
 /* Shipping page ends here */
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b

@@ -1,6 +1,7 @@
 import React from "react";
 
 const About = () => {
+<<<<<<< HEAD
   return <div>
     <h1 className="text-center">Welcome to Al Arabian Oud Centurion
 </h1>
@@ -40,6 +41,9 @@ Our journey is guided by a commitment to the highest standards of craftsmanship 
 </p>
 <p className="text-center"> Discover the magic of scent with Al Arabian Oud Centurion.</p>
   </div>;
+=======
+  return <div>About</div>;
+>>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 };
 
 export default About;
