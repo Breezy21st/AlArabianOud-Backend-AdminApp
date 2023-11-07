@@ -63,7 +63,7 @@ const Home = (props) => {
          <div className="text-container ">
           <h1>Discover the Magic of Arabian Oud...</h1>
           <h6>Shop Now for Timeless Elegance...</h6>
-          <button href="/product">Shop Now</button>
+          <button onClick={() => navigate("product")} >Shop Now</button>
         
       </div>
     </div>

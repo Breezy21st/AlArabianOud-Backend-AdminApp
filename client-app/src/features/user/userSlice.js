@@ -144,7 +144,7 @@ export const authSlice = createSlice({
             state.isSuccess=false;
             state.message=action.error;
             if(state.isError===true) {
-                toast.error(action.error)
+                toast.error(action.error.message || "Incorrect email or password, try again.")
             }
         })
         .addCase(getUserProductWishlist.pending,(state)=>{

@@ -1,12 +1,12 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import BreadCrumb from "../components/BreadCrumb";
 import Meta from "../components/Meta";
 import Container from "../components/Container";
 import CustomInput from "../components/CustomInput";
 import { useFormik } from 'formik';
 import * as yup from "yup";
-import { useDispatch } from 'react-redux'; 
+import { useDispatch, useSelector } from 'react-redux'; 
 import { loginUser } from "../features/user/userSlice";
 
 
@@ -17,6 +17,18 @@ const loginSchema = yup.object({
 
 const Login = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [loginError, setLoginError] = useState('');
+  const { user, isError, isSuccess, isLoading, message } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    if (isSuccess && user) {
+      navigate('/'); 
+    } else if (isError) {
+      navigate("")
+    }
+  }, [user, isError, isSuccess, isLoading, navigate]);
+
 
   const formik = useFormik({
     initialValues: {
@@ -25,7 +37,8 @@ const Login = () => {
     },
     validationSchema: loginSchema,
     onSubmit: (values) => {
-      dispatch(loginUser(values))
+      dispatch(loginUser(values));
+      
     },
   });
 
@@ -40,6 +53,9 @@ const Login = () => {
           <div className="col-12">
             <div className="auth-card">
               <h3 className="text-center mb-3">Login</h3>
+              <div className="error text-center">
+          {message.message === "Rejected" ? "Incorrect email or password, try again" : ""}
+        </div>
               <form action="" onSubmit={formik.handleSubmit} className="d-flex flex-column gap-15">
                 
 

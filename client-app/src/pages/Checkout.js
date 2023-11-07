@@ -10,14 +10,20 @@ import axios from 'axios';
 import {config } from "../utils/axiosConfig" 
 
 
-const shippingSchema = yup.object({
+const shippingSchema = yup.object().shape({
   firstName: yup.string().required("Firstname is required"),
   lastName: yup.string().required("Last name is required"),
   address: yup.string().required("Address details are required"),
   province: yup.string().required("Province is required"),
   city: yup.string().required("City is required"),
   country: yup.string().required("Country is required"),
-  zipcode: yup.string().required("Zip Code is required"),
+  zipcode: yup.string()
+    .required("Zip Code is required")
+    .matches(/^[0-9]{4}$/, "Zip Code must be exactly 4 digits")
+    .test('is-within-range', 'Zip Code must be between 0001 and 9999', value => {
+      const num = parseInt(value, 10);
+      return num >= 1 && num <= 9999;
+    }),
 });
 
 // page is static as it stands currently
@@ -47,13 +53,13 @@ const Checkout = () => {
       city: "",
       province: "",
       zipcode:  "",
-      country:  "",
+      country:  "South Africa",
       other: ""
     },
     validationSchema: shippingSchema,
     onSubmit: (values) => {
       
-      checkOutHandler(values);
+      alert(values)
     },
   });
 
@@ -71,29 +77,15 @@ const Checkout = () => {
     })
   }
 
-  const checkOutHandler = async() => {
-    const res = await loadScript("https://checkout.payfast.com/v1/checkout.js")
-    if (!res) { 
-      alert("PayFast SDK failed to load")
-      return;
-    }
-    const result = await axios.post("http;//localhost:5000/api/user/order/checkout", "", config);
-    if(!result) {
-      alert("Something went wrong!")
-      return;
-    }
-
-    
-
 
 
   return (
     <>
-      <Container class1="checkout-wrapper py-5 home-wrapper-2">
+      <Container class1="checkout-wrapper py-5">
         <div className="row">
           <div className="col-7">
             <div className="checkout-left-data">
-              <h3 className="website-name">Katlab Dev</h3>
+              <h3 className="website-name">Al Arabian Oud </h3>
               <nav
                 style={{ "--bs-breadcrumb-divider": ">" }}
                 aria-label="breadcrumb"
@@ -125,11 +117,11 @@ const Checkout = () => {
                 </ol>
               </nav>
               <h4 className="title total">Contact Information</h4>
-              <p className="user-details total">
-                FullName: {userState?.firstname} {userState?.lastname} 
+              <p className="user-details">
+                Full Name: {userState?.firstname} {userState?.lastname} 
               </p>
               <p>
-                Email address: {userState?.email}
+                Email Address: {userState?.email}
               </p>
               <h4 className="mb-3">Shipping Address</h4>
 
@@ -271,7 +263,7 @@ const Checkout = () => {
                 <div className="flex-grow-1">
                   <input
                     type="text"
-                    placeholder="Zipcode"
+                    placeholder="Zip Code"
                     className="form-control"
                     name="zipcode"
                     value={formik.values.zipcode} 
@@ -290,11 +282,9 @@ const Checkout = () => {
                       <BiArrowBack className="me-2" />
                       Return to Cart
                     </Link>
-                    <Link to="/cart" className="button">
-                      Continue to Shipping
+                    <Link to="/product" className="button">
+                      Continue to Shopping
                     </Link>
-                    <button className="button" type="submit"  > Place Order </button>
-
                     <button className="button" type="submit"> Place Order </button>
 
                   </div>
@@ -352,6 +342,6 @@ const Checkout = () => {
     </>
   );
 };
-}
+
 
 export default Checkout;
