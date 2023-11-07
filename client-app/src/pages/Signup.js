@@ -36,14 +36,11 @@ const Signup = () => {
 
   return (
     <>
-<<<<<<< HEAD
+
     <div className='background'> 
       <Meta title={"Sign Up"} />
       
-=======
-      <Meta title={"Sign Up"} />
-      <BreadCrumb title="Sign Up" />
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
+
       <Container class1="login-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">
@@ -57,12 +54,10 @@ const Signup = () => {
                 <CustomInput 
                   type="text" 
                   name="firstname" 
-<<<<<<< HEAD
+
                   label="First Name"
                   placeholder="Enter your first name"
-=======
-                  placeholder="First Name"
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
+
                   onChange={formik.handleChange}
                   value={formik.values.firstname} 
                   onBlur={formik.handleBlur}
@@ -74,12 +69,9 @@ const Signup = () => {
                 <CustomInput 
                   type="text" 
                   name="lastname" 
-<<<<<<< HEAD
                   label="Last Name"
                   placeholder="Enter your last name" 
-=======
-                  placeholder="Last Name" 
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
+
                   value={formik.values.lastname} 
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -91,12 +83,9 @@ const Signup = () => {
                 <CustomInput 
                   type="email" 
                   name="email" 
-<<<<<<< HEAD
                   label="Email Address"
                   placeholder="Enter your email address" 
-=======
-                  placeholder="Email" 
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
+
                   value={formik.values.email} 
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -108,12 +97,10 @@ const Signup = () => {
                 <CustomInput
                   type="tel"
                   name="mobile"
-<<<<<<< HEAD
+
                   label="Mobile number"
                   placeholder="Enter your mobile number"
-=======
-                  placeholder="Mobile Number"
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
+
                   value={formik.values.mobile} 
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -121,7 +108,7 @@ const Signup = () => {
                 <div className="error">
                   {formik.touched.mobile && formik.errors.mobile}
                 </div>
-<<<<<<< HEAD
+
 
                   {/* put login for strong password */}
                 <CustomInput
@@ -143,13 +130,7 @@ const Signup = () => {
                   name="confirm password"
                   label="Confirm Password"
                   placeholder="Enter confirm password"
-=======
-                  
-                <CustomInput
-                  type="password"
-                  name="password"
-                  placeholder="Password"
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
+
                   value={formik.values.password} 
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
@@ -167,10 +148,9 @@ const Signup = () => {
           </div>
         </div>
       </Container>
-<<<<<<< HEAD
+
       </div>
-=======
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
+
     </>
   );
 };

@@ -124,16 +124,7 @@ const MainLayout = () => {
                   icon: <BiCategoryAlt className='fs-5'/>,
                   label: "Category List"
                 },
-                // {
-                //   key: "Color",
-                //   icon: <AiOutlineBgColors className='fs-5'/>,
-                //   label: "Color"
-                // },
-                // {
-                //   key: "list-color",
-                //   icon: <AiOutlineBgColors className='fs-5'/>,
-                //   label: "Color List"
-                // },
+                
                 ],
             },
             {
@@ -219,7 +210,7 @@ const MainLayout = () => {
             <div className='d-flex gap-3 align-items-center'>
               
               <div >
-                  {/* display user firstname + lastname then email addy */}
+                  
                 <h5 className='mb-0'>{user.firstname} {user.lastname}</h5>
                 <p className='mb-0'>{user.email}</p>
               </div>

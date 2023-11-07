@@ -5,12 +5,10 @@ import Container from "../components/Container";
 import {useDispatch, useSelector} from 'react-redux';
 import {useFormik} from 'formik';
 import* as yup from 'yup';
-<<<<<<< HEAD
+
 import axios from 'axios';
 import {config } from "../utils/axiosConfig" 
-=======
 
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 
 const shippingSchema = yup.object({
   firstName: yup.string().required("Firstname is required"),
@@ -39,10 +37,7 @@ const Checkout = () => {
     }
    }, [cartState])
 
-<<<<<<< HEAD
-=======
-   
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
+
 
    const formik = useFormik({
     initialValues: {
@@ -58,7 +53,6 @@ const Checkout = () => {
     validationSchema: shippingSchema,
     onSubmit: (values) => {
       
-<<<<<<< HEAD
       checkOutHandler(values);
     },
   });
@@ -89,39 +83,9 @@ const Checkout = () => {
       return;
     }
 
-     // Prepare the payment data
-     const paymentData = {
-      amount: totalAmount,
-      item_name: "Your Product",
-      return_url: "https://yourwebsite.com/payment/success",
-      cancel_url: "https://yourwebsite.com/payment/cancel",
-      notify_url: "https://yourwebsite.com/payment/notify",
-      email_address: userState?.email,
-      merchant_id: "10000100", // Replace with your PayFast merchant ID
-      merchant_key: "46f0cd694581a", // Replace with your PayFast merchant key
-      // Add other necessary fields
-    };
+    
 
-    try {
-      const paymentResponse = await axios.post(
-        "http://localhost:5000/api/user/order/checkout",
-        paymentData
-      );
 
-      // Redirect to PayFast for payment
-      window.location.href = paymentResponse.data.url; // PayFast URL to complete payment
-    } catch (error) {
-      console.error(error);
-      alert("Something went wrong while processing the payment.");
-    }
-  };
-  
-=======
-      setShippingInfo(values);
-    },
-  });
-
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
 
   return (
     <>
@@ -168,10 +132,8 @@ const Checkout = () => {
                 Email address: {userState?.email}
               </p>
               <h4 className="mb-3">Shipping Address</h4>
-<<<<<<< HEAD
 
-=======
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
+
               <form onSubmit={formik.handleSubmit}
                 action=""
                 className="d-flex gap-15 flex-wrap justify-content-between"
@@ -331,11 +293,10 @@ const Checkout = () => {
                     <Link to="/cart" className="button">
                       Continue to Shipping
                     </Link>
-<<<<<<< HEAD
                     <button className="button" type="submit"  > Place Order </button>
-=======
+
                     <button className="button" type="submit"> Place Order </button>
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
+
                   </div>
                 </div>
               </form>
@@ -391,5 +352,6 @@ const Checkout = () => {
     </>
   );
 };
+}
 
 export default Checkout;

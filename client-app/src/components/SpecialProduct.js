@@ -2,24 +2,22 @@ import React from "react";
 import ReactStars from "react-rating-stars-component";
 import { Link } from "react-router-dom";
 const SpecialProduct = (props) => {
-  const { title, brand, totalrating, price, sold, quantity, id }=props; 
+  const { title, brand, totalrating, price, sold, quantity, id, image }=props; 
   return (
     <>
       <div className="col-6 mb-3">
         <div className="special-product-card">
           <div className="d-flex justify-content-between">
             <div>
-              <img src="images/watch.jpg" className="img-fluid" alt="Perfume" />
+              <img src={image} className="img-fluid" alt="Perfume" />
             </div>
             <div className="special-product-content">
               <h5 className="brand">{brand}</h5>
               <h6 className="title">
                   {title}
-<<<<<<< HEAD
+
               </h6> Rating
-=======
-              </h6>
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
+
               <ReactStars
                 count={5}
                 size={24}
@@ -31,34 +29,11 @@ const SpecialProduct = (props) => {
                 <span className="red-p">R {price}</span> &nbsp; 
                 {/* <strike>R200</strike> */}
               </p>
-<<<<<<< HEAD
+
               
               <div className="prod-count my-3">
                 <p>Products in stock: {quantity - sold}</p>
-=======
-              <div className="discount-till d-flex align-items-center gap-10">
-                <p className="mb-0">
-                  <b>5 </b>days
-                </p>
-                <div className="d-flex gap-10 align-items-center">
-                  <span className="badge rounded-circle p-2 bg-danger">1</span>:
-                  <span className="badge rounded-circle p-2 bg-danger">1</span>:
-                  <span className="badge rounded-circle p-2 bg-danger">1</span>
-                </div>
-              </div>
-              <div className="prod-count my-3">
-                <p>Products: {quantity}</p>
-                <div className="progress">
-                  <div
-                    className="progress-bar"
-                    role="progressbar"
-                    style={{ width: quantity/quantity + sold * 100 + "%" }}
-                    aria-valuenow={quantity/quantity + sold * 100}
-                    aria-valuemin={quantity}
-                    aria-valuemax={sold + quantity}
-                  ></div>
-                </div>
->>>>>>> 28296f3c9e4640e593df6fc16a09a9645b131d6b
+
               </div>
               <Link className="button" to={ '/product/'+id } >View</Link>
             </div>
