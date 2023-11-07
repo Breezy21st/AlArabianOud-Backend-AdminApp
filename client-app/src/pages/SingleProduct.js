@@ -22,6 +22,7 @@ const SingleProduct = () => {
   const getProductId = location.pathname.split("/")[2];
   const dispatch = useDispatch();
   const productState = useSelector((state) => state?.product?.singleProduct);
+  
   const cartState = useSelector((state) => state?.auth?.cartProducts);
   const [alreadyAdded, setAlreadyAdded] = useState(false);
   
@@ -31,14 +32,17 @@ const SingleProduct = () => {
   }, []);
 
   useEffect(() => {
-    for (let index = 0; index < cartState.length; index++) {
-      if (getProductId === cartState[index]?.productId?._id) 
-      {
-          setAlreadyAdded(true);
-      }
-      
+    // Ensure that cartState is an array.
+    if (!Array.isArray(cartState)) {
+      console.error('cartState should be an array', cartState);
+      return;
     }
-  }, [])
+  
+    // Look for the product in the cart.
+    const isProductAdded = cartState.some(cartItem => cartItem?.productId?._id === getProductId);
+    
+    setAlreadyAdded(isProductAdded);
+  }, []); 
 
   const uploadCart  = () => {
     dispatch(addProdToCart({productId: productState?._id, quantity, price: productState?.price}))

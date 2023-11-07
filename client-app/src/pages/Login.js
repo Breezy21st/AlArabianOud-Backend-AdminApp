@@ -18,12 +18,13 @@ const loginSchema = yup.object({
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [loginError, setLoginError] = useState('');
+  
   const { user, isError, isSuccess, isLoading, message } = useSelector((state) => state.auth);
 
   useEffect(() => {
     if (isSuccess && user) {
       navigate('/'); 
+      window.location.reload();
     } else if (isError) {
       navigate("")
     }
@@ -57,9 +58,7 @@ const Login = () => {
           {message.message === "Rejected" ? "Incorrect email or password, try again" : ""}
         </div>
               <form action="" onSubmit={formik.handleSubmit} className="d-flex flex-column gap-15">
-                
 
-                
                 <CustomInput 
                   type="email" 
                   name="email" 

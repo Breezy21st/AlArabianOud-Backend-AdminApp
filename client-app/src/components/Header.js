@@ -12,20 +12,22 @@ const Header = () => {
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
 
+  
+
   useEffect(() => {
     
-    const storedUser = JSON.parse(localStorage.getItem('user'));
+    const storedUser = JSON.parse(localStorage.getItem('customer'));
     
     setUser(storedUser);
   }, [setUser]);
 
-  const handleLogout = () => {
-    // Implement logout functionality here
-    localStorage.removeItem('user'); // Remove user from local storage
-    setUser({}); // Reset the user state
-    dispatch(setUser); // Dispatch a Redux action if needed
-    navigate('/login'); 
-  };
+  const handleLogout = (dispatch) => {
+    localStorage.clear(); // Clear all local storage
+    navigate('/'); 
+    window.location.reload();
+  }
+
+  
   useEffect(() => {
     let sum = 0;
 
@@ -102,50 +104,44 @@ const Header = () => {
             
             <div className="nav-icons d-flex align-items-center justify-content-end gap-2">
             
-           <div>
-            
-  {user && user.token ? (
-    
-    <>
-      <li className="nav-item dropdown">
-      
+            <div className="nav-icons d-flex align-items-center justify-content-end gap-2">
+  <ul className="navbar-nav"> 
+  
+    {user && user.token ? (
+      <li className="nav-item dropdown"> 
         <a className="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <BsPerson className="nav-item text-white fs-5" />
-        
-        Hello, {user.firstname}
+          <BsPerson className="nav-item text-white fs-5" />
+          Hi, {user.firstname}
         </a>
         <ul className="dropdown-menu" aria-labelledby="navbarDropdown">
           <li><NavLink className="dropdown-item" to="/settings">Settings</NavLink></li>
-          <li className="dropdown-item" onClick={handleLogout}>Logout
-          </li>
+          <li className="dropdown-item" onClick={handleLogout}>Logout</li>
         </ul>
       </li>
-    </>
-  ) : (
-    <>
-    <BsPerson className="nav-item text-white fs-5" />
-      <NavLink to="/login" className="nav-item text-white">Login</NavLink>
-      <span className='text-white'> | </span>
-      <NavLink to="/signup" className="nav-item text-white">Signup</NavLink>
-    </>
-  )}
-
+    ) : (
+      <>
+        <li className="nav-item">
+          <NavLink to="/login" className="nav-link text-white">Login</NavLink>
+        </li>
+        <li className="nav-item">
+          
+        </li>
+        <li className="nav-item">
+          <NavLink to="/signup" className="nav-link text-white">Signup</NavLink>
+        </li>
+      </>
+    )}
+  </ul>
+  <NavLink to="/cart" className="nav-item text-white">
+    <span className="badge bg-white text-dark fs-6">
+      <AiOutlineShoppingCart /> {cartState.length || 0}
+    </span>
+    <div className="d-flex flex-column gap-1 text-center">
+      <p className="mb-0">R {total.toFixed(2)}</p>
+    </div>
+  </NavLink>
 </div>
-              <br/>
-
-              <NavLink to="/cart" className="nav-item text-white">
-                <span className="badge bg-white text-dark fs-6">
-                    <AiOutlineShoppingCart /> {cartState.length || 0}
-                  </span>
-                  
-                <div className="d-flex flex-column gap-1 text-center">
-                  
-                  <p className="mb-0">R {total.toFixed(2)}</p>
-                </div>
-              </NavLink>
-
-              
-            </div>
+</div>
           </div>
         </div>
       </nav>
