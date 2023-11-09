@@ -466,23 +466,30 @@ const createOrder = asyncHandler(async (req, res) => {
 
   try {
     const order = await Order.create({
-      shippingInfo, 
-      orderItems, 
-      totalPrice, 
-      totalPriceAfterDiscount, 
+      shippingInfo,
+      orderItems,
+      totalPrice,
+      totalPriceAfterDiscount,
       paymentInfo,
       user: _id
-    })
+    });
 
+    // Use the order ID as the internal payment ID for PayFast
+    const internalPaymentID = order._id.toString();
+
+    // Send back the order along with the internalPaymentID for PayFast
     res.json({
       order,
+      internalPaymentID, // This will be used as 'm_payment_id' in PayFast's POST data
       success: true
-    })
+    });
 
   } catch (error){
-    throw new Error(error);
+    console.error('Order creation failed:', error);
+    res.status(500).json({ message: "Error creating order", error: error.message });
   }
-})
+});
+
 
 // const applyCoupon = asyncHandler(async (req, res) => {
 //   const { coupon } = req.body;

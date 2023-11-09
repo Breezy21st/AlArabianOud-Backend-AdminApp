@@ -32,7 +32,10 @@ const { createUser,
     updateProductQuantityFromCart} = require('../controller/userCtrl');
 const { authMiddleware, isAdmin } = require('../middlewares/authMiddleware');
 
-const { checkout, paymentVerification } = require('../controller/paymentCtrl');
+const {
+    initiateOnsitePayment,
+    handleITN,
+  } = require('../controller/paymentCtrl');
 
 const router = express.Router();
 
@@ -43,12 +46,18 @@ router.put('/reset-password/:token', resetPassword);
 router.put('/password', authMiddleware, updatePassword);
 router.post('/login', loginUserCtrl);
 router.post("/admin-login", loginAdmin);
-router.post('/order/checkout', authMiddleware, checkout);
-router.post('/oder/paymentVerification', authMiddleware, paymentVerification);
+
+// Payment routes
+router.post('/payment/initiate', authMiddleware, initiateOnsitePayment);
+
+// The route for handling ITN post-back from PayFast
+router.post('/payment/itn', handleITN);
+
+router.post("/cart/create-order", authMiddleware, createOrder);
 
 router.post("/cart", authMiddleware, userCart);
 // router.post("/cart/applycoupon", authMiddleware, applyCoupon);
-router.post("/cart/create-order", authMiddleware, createOrder);
+
 router.get('/all-users', getallUser);
 // router.get("/get-orders", authMiddleware, getOrders);
 // router.get("/getmyorders", authMiddleware, getMyOrders);

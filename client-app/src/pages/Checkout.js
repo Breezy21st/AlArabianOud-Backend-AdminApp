@@ -5,10 +5,11 @@ import Container from "../components/Container";
 import {useDispatch, useSelector} from 'react-redux';
 import {useFormik} from 'formik';
 import* as yup from 'yup';
-
-import axios from 'axios';
-import {config } from "../utils/axiosConfig" 
-
+import { createPaymentOrder } from '../features/user/userSlice';
+import { toast } from "react-toastify";
+import axios from "axios";
+import { config } from "../utils/axiosConfig";
+import { base_url } from "../utils/baseUrl";
 
 const shippingSchema = yup.object().shape({
   firstName: yup.string().required("Firstname is required"),
@@ -26,58 +27,99 @@ const shippingSchema = yup.object().shape({
     }),
 });
 
+const calculateTotalPrice = (cartItems) => {
+  return cartItems.reduce((total, item) => {
+    return total + (item.quantity * item.price);
+  }, 0);
+};
+
 // page is static as it stands currently
 const Checkout = () => {
   const dispatch = useDispatch()
   const cartState = useSelector((state) => state.auth.cartProducts)
+  const orderState = useSelector((state) => state.auth.createdOrder)
   const userState = useSelector((state) => state.auth.user)
   const [totalAmount, setTotalAmount] = useState(null);
-  const [shippingInfo, setShippingInfo] = useState(null)
+  const [totalPrice, setTotalPrice] = useState(0);
+  
 
   useEffect(() => {
-    let sum=0;
-    for (let index = 0; index < cartState.length; index++) {
-     sum = sum + (Number(cartState[index].quantity) * cartState[index].price)
-     setTotalAmount(sum);
+    let sum = cartState.reduce((acc, item) => acc + (item.quantity * item.price), 0);
+    setTotalAmount(sum);
     
-    }
-   }, [cartState])
+  }, [cartState]);
 
+  
 
-
-   const formik = useFormik({
+  const formik = useFormik({
     initialValues: {
-      firstName: "",
-      address:  "",
-      lastName: "",
+      firstName: userState?.firstname || "",
+      lastName: userState?.lastname || "",
+      address: "",
       city: "",
       province: "",
-      zipcode:  "",
-      country:  "South Africa",
+      zipcode: "",
+      country: "South Africa",
       other: ""
     },
+ 
+
+
     validationSchema: shippingSchema,
     onSubmit: (values) => {
-      
-      alert(values)
+
+      const paymentInfo = {
+        // These should be provided after the payment process is completed
+        // For now, you can use placeholders or remove these validations from your backend model if they are not applicable yet
+        payfastPaymentId: "placeholder-payment-id",
+        payfastOrderId: "placeholder-order-id",
+      };
+
+      const orderData = {
+        shippingInfo: values,
+        orderItems: cartState.map(item => ({
+          product: item.productId._id,
+          quantity: item.quantity
+        })),
+        totalPrice: totalAmount,
+        totalPriceAfterDiscount: totalAmount, // If you don't have discounts, just duplicate the totalAmount or set a proper discount logic
+        paymentInfo,
+      };
+      dispatch(createPaymentOrder(orderData))
+        .unwrap()
+        .then(({ internalPaymentID }) => {
+          // Proceed to payment
+          handlePayment(internalPaymentID);
+        })
+        .catch(error => {
+          toast.error(`Error creating order: ${error.message}`);
+        });
     },
   });
 
-  const loadScript = (src) => {
-    return new Promise((resolve)=>{
-      const script = document.createElement("script");
-      script.src = src;
-      script.onload = () => {
-        resolve(true)
+  const handlePayment = async (internalPaymentID) => {
+    try {
+      // Send a request to your backend to initiate the payment process
+      const response = await axios.post(`${base_url}user/payment/initiate`, {
+        totalAmount, // Total amount to be paid
+        userState, // User details, including first name, last name, and email
+        internalPaymentID: internalPaymentID // The ID of the order just created
+      }, config); // Pass any required Axios config, e.g., headers with tokens
+ 
+      // Redirect user to PayFast for payment
+      if (response.data && response.data.paymentUrl) {
+        window.location.href = response.data.paymentUrl;
+      } else {
+        // Handle any error or missing data
+        toast.error('Failed to initiate payment process.');
       }
-      script.onerror = () => {
-        resolve(false)
-      }
-      document.body.appendChild(script)
-    })
-  }
-
-
+    } catch (error) {
+      console.error('Failed to initiate payment:', error);
+      toast.error('Payment initiation failed: ' + error.message);
+    }
+  };
+  
+  
 
   return (
     <>
@@ -285,7 +327,7 @@ const Checkout = () => {
                     <Link to="/product" className="button">
                       Continue to Shopping
                     </Link>
-                    <button className="button" type="submit"> Place Order </button>
+                    <button className="button" type="submit"> Pay Now </button>
 
                   </div>
                 </div>

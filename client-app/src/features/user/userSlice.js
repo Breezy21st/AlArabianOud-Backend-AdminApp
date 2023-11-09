@@ -79,6 +79,21 @@ export const addProdToCart = createAsyncThunk(
                 return thunkAPI.rejectWithValue(error.message);
             }
         });
+
+        export const createPaymentOrder = createAsyncThunk(
+            "user/create-order", 
+            async (orderData, thunkAPI) => {
+              try {
+                const response = await authService.createOrder(orderData);
+                // Here you handle the response which includes the internalPaymentID
+                return response;
+              } catch (error) {
+                return thunkAPI.rejectWithValue(error);
+              }
+            }
+          );
+
+
 const getCustomerFromLocalStorage = localStorage.getItem("customer")
 ? JSON.parse(localStorage.getItem("customer"))
 : null;
@@ -89,6 +104,7 @@ const initialState={
     user:getCustomerFromLocalStorage,
     wishlist: [],
     cartProducts: [],
+    createdOrder: [],
     isError:false,
     isSuccess:false,
     isLoading:false,
@@ -232,6 +248,26 @@ export const authSlice = createSlice({
             
         })
         .addCase(updateCartProduct.rejected,(state, action)=>{
+            state.isLoading=false;
+            state.isError=true;
+            state.isSuccess=false;
+            state.message=action.error;
+            
+        })
+        .addCase(createPaymentOrder.pending,(state)=>{
+            state.isLoading=true;
+        })
+        .addCase(createPaymentOrder.fulfilled,(state, action)=>{
+            state.isLoading=false;
+            state.isError=false;
+            state.isSuccess=true;
+            state.createdOrder = action.payload;
+            if(state.isSuccess) {
+                toast.success("Your payment was successful and your order is being processed")
+            };
+            
+        })
+        .addCase(createPaymentOrder.rejected,(state, action)=>{
             state.isLoading=false;
             state.isError=true;
             state.isSuccess=false;
