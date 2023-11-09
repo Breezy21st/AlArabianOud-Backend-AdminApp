@@ -21,6 +21,7 @@ import TermAndContions from "./pages/TermAndContions";
 import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
+import Orders from './pages/Orders';
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
                 {/* <Route path="refund-policy" element={<RefundPolicy />} /> */}
                 <Route path="shipping-policy" element={<ShippingPolicy />} />
                 <Route path="term-conditions" element={<TermAndContions />} />
+                <Route path='orders' element={<Orders/>}/>
               </Route>
           </Routes>
       </BrowserRouter>
