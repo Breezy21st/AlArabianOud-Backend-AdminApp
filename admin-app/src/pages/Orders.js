@@ -66,13 +66,13 @@ const Orders = () => {
   for (let i = 0; i < orderState?.length; i++) {
     data1.push({
       key: i + 1,
-      name: orderState[i]?.orderby?.firstname,
+      name: orderState[i]?.shippingInfo?.firstName,
       product: (
         <Link to={`/admin/order/${orderState[i]?._id}`}>
           View Order
         </Link>
       ),
-      amount: orderState[i]?.totalAfterDiscount,
+      amount: orderState[i]?.totalPriceAfterDiscount,
       date: new Date(orderState[i]?.createdAt).toLocaleString(),
       action: (
         <>
@@ -85,6 +85,7 @@ const Orders = () => {
          </select>
         </>
       ),
+      address: orderState[i]?.shippingInfo?.address, 
     });
   }
 

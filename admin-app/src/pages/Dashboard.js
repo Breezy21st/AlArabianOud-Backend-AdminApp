@@ -85,21 +85,16 @@ const Dashboard = () => {
     const data1 = [];
 
     for (let i = 0; i < orderState?.length; i++) {
-      const order = orderState[i];
-      if (order?.orderby) {
-        const user = order.orderby; // Access the user information
-        data1.push({
-          key: i,
-          name: `${user.firstname} ${user.lastname}`,
-          product: order.products?.length || 0,
-          price: order?.totalPrice || 0,
-          dprice: order?.totalAfterDiscount || 0,
-          status: order?.orderStatus || "Unknown Status",
-        });
-      } else {
-        console.log(`Invalid data at index ${i} in orderState:`, order);
-      }
+      data1.push({
+        key: i + 1,
+        name: orderState[i].shippingInfo?.firstName,
+        product: orderState[i]?.OrderItems?.length,
+        price: orderState[i]?.totalPrice,
+        dprice: orderState[i]?.totalPriceAfterDiscount,
+        status: orderState[i]?.orderStatus || "Ordered",
+      });
     }
+    
     
 
 console.log("orderData:", data1); // Log orderData to check its contents

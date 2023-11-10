@@ -577,7 +577,14 @@ const createOrder = asyncHandler(async (req, res) => {
 //   }
 // });
 
+// Get orders for a specific user
+const getUserOrders = async (req, res) => {
+  const user = req.user;
+  validateMongoDbId(user._id);
 
+  const orders = await Order.find({ user: user._id }).populate('OrderItems.product');
+  res.json(orders);
+};
 
 
 // const getOrders = asyncHandler(async (req, res) => {
@@ -594,6 +601,28 @@ const createOrder = asyncHandler(async (req, res) => {
 //   }
 // });
 
+// Get all orders (Admin)
+const getAllOrders = async (req, res) => {
+  // This should be protected and only accessible by admins
+  const orders = await Order.find().populate('user', 'name').populate('OrderItems.product');
+  res.json(orders);
+};
+
+// Update order status (Admin)
+const updateOrderStatus = async (req, res) => {
+  const orderId = req.params.id;
+  validateMongoDbId(orderId);
+
+  const order = await Order.findById(orderId);
+  if (!order) {
+    res.status(404);
+    throw new Error('Order not found');
+  }
+
+  order.orderStatus = req.body.status;
+  const updatedOrder = await order.save();
+  res.json(updatedOrder);
+};
 
 // const getAllOrders = asyncHandler(async (req, res) => {
 //   try {
@@ -628,6 +657,28 @@ const createOrder = asyncHandler(async (req, res) => {
 //   }
 // });
 
+
+// Get orders by user ID (Admin)
+const getOrderByUserId = async (req, res) => {
+  const userId = req.params.id;
+  validateMongoDbId(userId);
+
+  const orders = await Order.find({ user: userId }).populate('OrderItems.product');
+  res.json(orders);
+};
+
+// Get a single order by order ID
+const getSingleOrder = async (req, res) => {
+  const orderId = req.params.id;
+  validateMongoDbId(orderId);
+
+  const order = await Order.findById(orderId).populate('OrderItems.product');
+  if (!order) {
+    res.status(404);
+    throw new Error('Order not found');
+  }
+  res.json(order);
+};
 // const getOrderByUserId = asyncHandler(async (req, res) => {
 //   const { id } = req.params;
 //   validateMongoDbId(id);
@@ -641,6 +692,24 @@ const createOrder = asyncHandler(async (req, res) => {
 //     throw new Error(error);
 //   }
 // });
+
+// Update order (General user)
+const updateOrder = async (req, res) => {
+  const orderId = req.params.id;
+  validateMongoDbId(orderId);
+
+  const order = await Order.findById(orderId);
+  if (!order) {
+    res.status(404);
+    throw new Error('Order not found');
+  }
+
+  // Update the order with new info from req.body if needed
+  // ...
+
+  const updatedOrder = await order.save();
+  res.json(updatedOrder);
+};
 
 // const getMyOrders = asyncHandler(async (req, res) => {
 //   const { _id } = req.user;
@@ -686,6 +755,78 @@ const createOrder = asyncHandler(async (req, res) => {
 //     throw new Error(error)
 //   }
 // })
+const getMonthWiseOrderIncome = async (req, res) => {
+   let monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  let d = new Date();
+  let endDate= "";
+  d.setDate(1)
+  for (let index = 0; index < 11; index++) {
+    d.setMonth(d.getMonth()-1)
+    endDate=monthNames[d.getMonth()]+ " " + d.getFullYear()
+  }
+
+
+
+  const data=await Order.aggregate([
+    {
+      $match: {
+        createdAt:{
+          $lte: new Date(),
+          $gte: new Date(endDate)
+        }
+      }
+    }, 
+    {  
+      $group: {
+      _id: {
+        month: { $subtract: [{$month: "$createdAt"}, 1]  },
+      }, amount: {$sum: "$totalPriceAfterDiscount"},
+      count: {$sum: 1}
+
+    }
+    }
+
+  ])
+
+  res.json(data)
+  
+};
+
+const getYearlyTotalOrders = async (req, res) => {
+  let monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+  let d = new Date();
+  let endDate= "";
+  d.setDate(1)
+  for (let index = 0; index < 11; index++) {
+    d.setMonth(d.getMonth()-1)
+    endDate=monthNames[d.getMonth()]+ " " + d.getFullYear()
+  }
+  const data=await Order.aggregate([
+    {
+      $match: {
+        createdAt:{
+          $lte: new Date(),
+          $gte: new Date(endDate)
+        }
+      }
+    }, 
+    {  
+      $group: {
+      _id: null, 
+      count: {$sum: 1},
+      amount: {$sum: "$totalPriceAfterDiscount"}
+    }
+    }
+
+  ])
+
+  res.json(data)
+};
+
+module.exports = {
+  getMonthWiseOrderIncome,
+  getYearlyTotalOrders
+};
 
 
 // const getMonthWiseOrderIncome = asyncHandler(async (req, res) => {
@@ -775,14 +916,14 @@ module.exports = { createUser,
     //  applyCoupon,
      createOrder,
     //  getOrders,
-    //  updateOrderStatus,
-    //  getAllOrders,
-    //  getOrderByUserId,
+     updateOrderStatus,
+     getAllOrders,
+     getOrderByUserId,
     //  getMyOrders,
-    //  getMonthWiseOrderIncome,
-    //  getYearlyTotalOrders,
-    //  getSingleOrders,
-    //  updateOrder,
+     getMonthWiseOrderIncome,
+     getYearlyTotalOrders,
+     getSingleOrder,
+     updateOrder,
      removeProductFromCart,
      updateProductQuantityFromCart,
      };
