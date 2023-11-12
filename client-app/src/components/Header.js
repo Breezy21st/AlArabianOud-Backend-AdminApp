@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { BsSearch, BsPerson } from 'react-icons/bs';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineHeart, AiOutlineShoppingCart } from 'react-icons/ai';
 import Logo from '../images/Logo.png';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -82,11 +82,7 @@ const Header = () => {
                     About
                   </NavLink>
                 </li>
-                <li className="nav-item px-2">
-                  <NavLink className="nav-link" to="/contact" activeClassName="active">
-                    Contact
-                  </NavLink>
-                </li>
+                
                 <li className="nav-item px-2 dropdown">
                 <a className="nav-link dropdown-toggle" href="/products" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Products
@@ -100,6 +96,12 @@ const Header = () => {
                   <li><a className="dropdown-item" href="/cat3">Bakhoor</a></li>
                   <li><a className="dropdown-item" href="/cat3">Burners</a></li>
                 </ul>
+                </li>
+                
+                <li className="nav-item px-2">
+                  <NavLink className="nav-link" to="/contact" activeClassName="active">
+                    Contact
+                  </NavLink>
                 </li>
               </ul>
             </div>
@@ -134,7 +136,11 @@ const Header = () => {
         </li>
       </>
     )}
+     <li className="nav-item">
+          <NavLink to="/wishlist" className="nav-link text-white "><AiOutlineHeart/></NavLink>
+        </li>
   </ul>
+  
   <NavLink to="/cart" className="nav-item text-white">
     <span className="badge bg-white text-dark fs-6">
       <AiOutlineShoppingCart /> {cartState.length || 0}

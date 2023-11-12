@@ -5,6 +5,7 @@ import Container from "../components/Container";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserProductWishlist } from "../features/user/userSlice";
 import { addToWishlist } from "../features/products/productSlice";
+import { ImBin2 } from 'react-icons/im';
 
 const Wishlist = () => {
 
@@ -48,12 +49,15 @@ const Wishlist = () => {
                 key={index}
                 >
             <div className="wishlist-card position-relative bg-white">
-              <img onClick={()=>{
-                removeFromWishList(item?._id)}}
-                src="images/cross.svg"
-                alt="cross"
-                className="position-absolute cross img-fluid"
-              />
+              <ImBin2 
+                onClick={()=>{
+                  removeFromWishList(item?._id)}}
+                  src="images/cross.svg"
+                  alt="cross"
+                  className="position-absolute cross img-fluid"
+                  >
+              </ImBin2>
+              
               <div className="wishlist-card-image ">
                 <img
                   src={item?.images[0]?.url

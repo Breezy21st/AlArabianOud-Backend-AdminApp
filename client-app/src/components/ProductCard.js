@@ -1,10 +1,9 @@
-import React from "react";
+import React, {useState} from "react";
 import ReactStars from "react-rating-stars-component";
 import { Link, useLocation } from "react-router-dom";
 import prodcompare from "../images/prodcompare.svg";
 import wish from "../images/wish.svg";
-// import wishlist from "../images/wishlist.svg";
-// import watch from "../images/watch.jpg";
+import { AiOutlineHeart, AiFillHeart } from 'react-icons/ai';
 import watch2 from "../images/watch-1.avif";
 import addcart from "../images/add-cart.svg";
 import view from "../images/view.svg";
@@ -23,6 +22,7 @@ const ProductCard = (props) => {
     
     dispatch(addToWishlist(id));
   }
+
 
   return (
     <>
@@ -44,7 +44,8 @@ const ProductCard = (props) => {
                 className="border-0 bg-transparent" 
                 onClick={(e)=>{addToWish(item?._id)}}
               >
-                <img src={wish} alt="wishlist" />
+                
+               <i class="wishlist-icon"> < AiOutlineHeart/>  </i>
               </button>
             </div>
             <div className="product-image">
@@ -80,14 +81,19 @@ const ProductCard = (props) => {
                 
               </p>
               <p className="price">R {item?.price}</p>
+              <Link 
+                to={'/product/'+item?._id} 
+                >
+                  <button
+                    className="view-btn border-0 bg-transparent position-absolute bottom-0 end-0 p-5"
+                  > <img src={view} alt="view" /> View</button>
+                </Link>
+                
             </div>
             <div className="action-bar position-absolute">
               <div className="d-flex flex-column gap-15">
 
                 
-                <Link to={'/product/'+item?._id} className="border-0 bg-transparent">
-                  <img src={view} alt="view" />
-                </Link>
                 
 
               </div>

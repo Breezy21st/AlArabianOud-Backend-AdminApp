@@ -207,8 +207,10 @@ const Home = (props) => {
                 
               </p>
               <p className="price">R {item?.price}</p>
-              <button className="view-btn border-0 bg-transparent position-absolute bottom-0 end-0 p-5">
-                  <img onClick={() => navigate("product/" +item?._id)} src={view} alt="view" />
+              <button 
+                onClick={() => navigate("product/" +item?._id)}
+                className="view-btn border-0 bg-transparent position-absolute bottom-0 end-0 p-5">
+                  <img src={view} alt="view" />
                   {"  "} View
                 </button>
             </div>

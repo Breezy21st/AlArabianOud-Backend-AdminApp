@@ -29,6 +29,9 @@
   margin-bottom: 30px;
 }
 
+.icon-spacing {
+  margin-right: 8px; /* Adjust the value as needed */
+}
 
 .background {
   background-image: url("../src/images/Rectangle\ 32.png");
@@ -265,6 +268,15 @@ button:hover {
 
 
 }
+
+.wishlist-icon {
+  transition: color 0.5s;
+}
+
+.wishlist-icon.red-heart {
+  color: red;
+}
+
 .product-card .product-image {
   height: 270px;
 }
