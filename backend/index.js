@@ -47,6 +47,7 @@ app.use(helmet({
           "usb-connection": [], // Disallow USB connection completely
           
         },
+    },
   }));
   
 dbConnect();
