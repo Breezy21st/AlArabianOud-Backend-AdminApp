@@ -23,6 +23,8 @@ const addToWishlist = async(prodId)=> {
     }
 }
 
+
+
 export const productService={
     getProducts,
     addToWishlist,

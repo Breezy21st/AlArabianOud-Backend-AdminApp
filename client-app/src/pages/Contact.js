@@ -43,17 +43,15 @@ const Contact = () => {
       <Container class1="contact-wrapper py-5 home-wrapper-2">
         <div className="row">
           <div className="col-12">
-
-            {/* need to fix the maps API from google developer console */}
-            <iframe
-              src="https://www.google.com/maps/embed/v1/view?zoom=17&center=-25.8361%2C28.1397&key=AIzaSyAE_ImBAIcv-lrjDrFAHdh0-ClON65vdQE"
-              width="600"
-              height="450"
-              className="border-0 w-100"
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28728.10141035298!2d28.10367661083984!3d-25.836127599999987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e95649ec8bd04b7%3A0x1c285ac76c2d198!2sEldo%20Square%20Shopping%20Centre!5e0!3m2!1sen!2sza!4v1699369318981!5m2!1sen!2sza" 
+              width="1300" 
+              height="450" 
+              style={{ border: "0"}}
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+              </iframe>
+            
           </div>
           <div className="col-12 mt-5">
             <div className="contact-inner-wrapper d-flex justify-content-between ">
@@ -158,16 +156,14 @@ const Contact = () => {
                     </li>
                     <li className="mb-3 d-flex gap-15 align-items-center">
                       <BiPhoneCall className="fs-5" />
-                      <a href="tel:+91 8264954234">+91 8264954234</a>
+                      <a href="tel:+27 072 054 4448">+27 072 054 4448</a>
                     </li>
                     <li className="mb-3 d-flex gap-15 align-items-center">
                       <AiOutlineMail className="fs-5" />
 
-                      <a href="mailto:info@alarabianoud.co.za" >
+                      <a href="mailto:nooreinahmed@gmail.com" >
 
-                      
-
-                        info@alarabianoud.co.za
+                        nooreinahmed@gmail.com
                       </a>
                     </li>
                     <li className="mb-3 d-flex gap-15 align-items-center">
