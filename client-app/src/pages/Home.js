@@ -61,8 +61,8 @@ const Home = (props) => {
       <div className="row align-items-center justify-content-center min-vh-100">
         <div className="col-12 col-md-6 col-lg-4 text-center">
          <div className="text-container ">
-          <h1>Discover the Magic of Arabian Oud...</h1>
-          <h6>Shop Now for Timeless Elegance...</h6>
+          <h1>Discover the Magic of Arabian Oud - Elevate Your Senses with the Finest Oud Perfumes and Oils. </h1>
+          <h6>Shop Now for Timeless Elegance and Unforgettable Fragrance Experiences.</h6>
           <button onClick={() => navigate("product")} >Shop Now</button>
         
       </div>

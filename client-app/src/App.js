@@ -47,7 +47,7 @@ function App() {
                 <Route path="login" element={<Login />} />
                 <Route path="forgot-password" element={<Forgotpassword />} />
                 <Route path="signup" element={<Signup />} />
-                <Route path="reset-password" element={<Resetpassword />} />
+                <Route path="reset-password/:token" element={<Resetpassword />} />
                 {/* <Route path="privacy-policy" element={<PrivacyPolicy />} /> */}
                 {/* <Route path="refund-policy" element={<RefundPolicy />} /> */}
                 <Route path="shipping-policy" element={<ShippingPolicy />} />
