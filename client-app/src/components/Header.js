@@ -27,7 +27,7 @@ const Header = () => {
     window.location.reload();
   }
 
-  
+
   useEffect(() => {
     // Only run the calculation if cartState is an array
     if (Array.isArray(cartState)) {
@@ -39,7 +39,6 @@ const Header = () => {
       setTotal(0); // or handle this case as needed
     }
   }, [cartState]);
-  
 
   return (
     <>
