@@ -29,14 +29,17 @@ const Header = () => {
 
   
   useEffect(() => {
-    let sum = 0;
-
-    cartState.forEach((item) => {
-      sum += Number(item.quantity) * Number(item.price);
-    });
-
-    setTotal(sum);
+    // Only run the calculation if cartState is an array
+    if (Array.isArray(cartState)) {
+      let sum = cartState.reduce((acc, item) => acc + (item.quantity * item.price), 0);
+      setTotal(sum);
+    } else {
+      // Handle the case where cartState is not an array
+      console.error('cartState is not an array', cartState);
+      setTotal(0); // or handle this case as needed
+    }
   }, [cartState]);
+  
 
   return (
     <>
