@@ -18,8 +18,28 @@ const couponRouter = require("./routes/couponRoute");
 const uploadRouter = require("./routes/uploadRoute");
 const morgan = require('morgan');
 const cors = require('cors');
+const helmet = require('helmet')
 
 
+
+// Example of custom Helmet configuration (this is just a sample, adjust the options based on your needs)
+app.use(helmet({
+    frameguard: {
+      action: 'deny'
+    },
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: ["'self'", 'https://fonts.googleapis.com'],
+        fontSrc: ["'self'", 'https://fonts.gstatic.com'],
+        scriptSrc: ["'self'", "https://some.cdn.com"],
+        objectSrc: ["'none'"],
+        upgradeInsecureRequests: [],
+      },
+    },
+    referrerPolicy: { policy: 'no-referrer' },
+  }));
+  
 dbConnect();
 
 app.use(morgan('dev'));
