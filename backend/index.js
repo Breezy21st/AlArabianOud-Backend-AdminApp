@@ -38,6 +38,15 @@ app.use(helmet({
       },
     },
     referrerPolicy: { policy: 'no-referrer' },
+    
+    permissionsPolicy: {
+        features: {
+          
+          geolocation: ["self"], // Only allow geolocation to the same origin
+          microphone: ["self"], // Only allow microphone to the same origin
+          "usb-connection": [], // Disallow USB connection completely
+          
+        },
   }));
   
 dbConnect();
