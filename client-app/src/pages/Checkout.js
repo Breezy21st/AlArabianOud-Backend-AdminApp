@@ -5,7 +5,7 @@ import Container from "../components/Container";
 import {useDispatch, useSelector} from 'react-redux';
 import {useFormik} from 'formik';
 import* as yup from 'yup';
-import { createPaymentOrder } from '../features/user/userSlice';
+import { applyCoupon, createPaymentOrder } from '../features/user/userSlice';
 import { toast } from "react-toastify";
 import axios from "axios";
 import { config } from "../utils/axiosConfig";
@@ -39,6 +39,9 @@ const Checkout = () => {
   const cartState = useSelector((state) => state.auth.cartProducts)
   const orderState = useSelector((state) => state.auth.createdOrder)
   const userState = useSelector((state) => state.auth.user)
+  const [couponCode, setCouponCode] = useState('');
+  const [isCouponApplied, setIsCouponApplied] = useState(false);
+
   const [totalAmount, setTotalAmount] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
   
@@ -49,6 +52,23 @@ const Checkout = () => {
     
   }, [cartState]);
 
+  const handleApplyCoupon = () => {
+    if (couponCode) {
+      // Assuming applyCoupon is an async thunk you have already set up in userSlice
+      dispatch(applyCoupon({ coupon: couponCode }))
+        .unwrap()
+        .then((newTotal) => {
+          setTotalAmount(newTotal);
+          setIsCouponApplied(true);
+          toast.success("Coupon applied successfully!");
+        })
+        .catch((error) => {
+          toast.error(`Failed to apply coupon: ${error.message || 'Unknown error'}`);
+        });
+    } else {
+      toast.error("Please enter a coupon code.");
+    }
+  };
   
 
   const formik = useFormik({
@@ -370,6 +390,17 @@ const Checkout = () => {
               }
               
             </div>
+          <div className="coupon-input">
+                <input
+                  type="text"
+                  value={couponCode}
+                  onChange={(e) => setCouponCode(e.target.value)}
+                  placeholder="Coupon Code"
+                />
+              <button onClick={handleApplyCoupon}>Apply Coupon</button>
+          </div>
+
+
             <div className="border-bottom py-4">
               <div className="d-flex justify-content-between align-items-center">
                 <p className="total">Subtotal</p>
@@ -382,7 +413,8 @@ const Checkout = () => {
             </div>
             <div className="d-flex justify-content-between align-items-center border-bootom py-4">
               <h4 className="total">Total</h4>
-              <h5 className="total-price">R {totalAmount?totalAmount + 60: "0"}</h5>
+              {isCouponApplied && <p>Discount applied!</p>}
+            <p>Total: R {isCouponApplied ? totalAmount : totalAmount + 60 /* Assuming 60 is shipping */}</p>
             </div>
           </div>
         </div>

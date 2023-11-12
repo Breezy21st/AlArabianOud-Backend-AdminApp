@@ -173,7 +173,22 @@ export const updateUserDetails = createAsyncThunk(
         return thunkAPI.rejectWithValue(error)
       }
     }
-  )
+  );
+
+  export const applyCoupon = createAsyncThunk(
+    'cart/applyCoupon',
+    async (couponData, thunkAPI) => {
+        try {
+            const response = await authService.applyCouponToCart(couponData);
+            // You may want to update the cart state here or in the reducer below
+            return response;
+        } catch (error) {
+            const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString();
+            // Optionally show a toast message or handle the error state
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
 
 const getCustomerFromLocalStorage = localStorage.getItem("customer")
 ? JSON.parse(localStorage.getItem("customer"))
@@ -472,6 +487,22 @@ export const authSlice = createSlice({
             state.message = action.error;
             state.isLoading = false;
           })
+          .addCase(applyCoupon.pending, (state) => {
+            state.isLoading = true;
+            state.error = null;
+            state.couponApplied = false;
+        })
+        .addCase(applyCoupon.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.couponApplied = true;
+            state.cart = action.payload; 
+            
+        })
+        .addCase(applyCoupon.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload;
+            state.couponApplied = false;
+        });
     },
 });
 

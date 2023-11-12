@@ -119,6 +119,17 @@ const getOrdersByUserId = async (userId) => {
     const response = await axios.put(`${base_url}user/reset-password/${data.token}`, {password: data?.password});
     return response.data;
   };
+
+  const applyCouponToCart = async (couponCode) => {
+    try {
+      const response = await axios.post(`${base_url}user/cart/apply-coupon`, { coupon: couponCode }, config);
+      return response.data; // The expected response should be the total after discount
+    } catch (error) {
+      console.error('Error applying coupon:', error.response?.data?.message || error.message);
+      throw new Error(error.response?.data?.message || 'Error applying coupon');
+    }
+  };
+  
 export const authService={
     register,
     login,
@@ -134,6 +145,7 @@ export const authService={
     updateUser,
     saveUserAddress,
     forgotPassToken,
-    resetPass
+    resetPass,
+    applyCouponToCart
 
 };

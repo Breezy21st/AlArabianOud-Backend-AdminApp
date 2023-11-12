@@ -541,29 +541,57 @@ const createOrder = asyncHandler(async (req, res) => {
 
 
 
-// const applyCoupon = asyncHandler(async (req, res) => {
-//   const { coupon } = req.body;
-//   const { _id } = req.user;
-//   validateMongoDbId(_id);
-//   const validCoupon = await Coupon.findOne({ name: coupon });
-//   if (validCoupon === null) {
-//     throw new Error("Invalid Coupon");
-//   }
-//   const user = await User.findOne({ _id });
-//   let { cartTotal } = await Cart.findOne({
-//     orderby: user._id,
-//   }).populate("products.product");
-//   let totalAfterDiscount = (
-//     cartTotal -
-//     (cartTotal * validCoupon.discount) / 100
-//   ).toFixed(2);
-//   await Cart.findOneAndUpdate(
-//     { orderby: user._id },
-//     { totalAfterDiscount },
-//     { new: true }
-//   );
-//   res.json(totalAfterDiscount);
-// });
+const applyCoupon = asyncHandler(async (req, res) => {
+ 
+  const { _id } = req.user;
+  validateMongoDbId(_id);
+
+  let { coupon } = req.body;
+  
+  // Convert coupon to a string if it's not already one
+  if (coupon && typeof coupon !== 'string') {
+    // If it's an object with a 'coupon' field, access that field instead
+    if (typeof coupon === 'object' && coupon.coupon) {
+      coupon = coupon.coupon;
+    } else {
+      // If coupon is something else, cast it to a string or throw an error
+      coupon = String(coupon);
+    }
+  }
+
+  // Add a check for empty string after conversion
+  if (!coupon) {
+    throw new Error("Coupon code is empty");
+  }
+
+  const validCoupon = await Coupon.findOne({ name: coupon.toUpperCase() });
+  if (validCoupon === null) {
+    throw new Error("Invalid Coupon");
+  }
+
+  const user = await User.findOne({ _id });
+  const cartItems = await Cart.find({ userId: user._id }).populate('productId');
+
+  if (!cartItems) {
+    throw new Error("No cart found for this user");
+  }
+
+  let cartTotal = cartItems.reduce((total, item) => total + (item.quantity * item.price), 0);
+// Assign cartTotal directly without destructuring
+
+  let totalAfterDiscount = (
+    cartTotal -
+    (cartTotal * validCoupon.discount) / 100
+  ).toFixed(2);
+
+  await Cart.findOneAndUpdate(
+    { orderby: user._id },
+    { totalAfterDiscount },
+    { new: true }
+  );
+
+  res.json(totalAfterDiscount);
+});
 
 
 // const createOrder = asyncHandler(async (req, res) => {
@@ -963,7 +991,7 @@ module.exports = { createUser,
      userCart,
      getUserCart,
     //  emptyCart,
-    //  applyCoupon,
+    applyCoupon,
      createOrder,
     //  getOrders,
      updateOrderStatus,

@@ -1,156 +1,118 @@
-import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateUserDetails, saveUserAddressDetails } from '../features/user/userSlice';
-import { toast } from 'react-toastify';
-
-const Settings = () => {
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { updateUserDetails, saveUserAddressDetails } from '../features/user/userSlice'; 
+import CustomInput from '../components/CustomInput';
+import { toast } from "react-toastify";
+import { Link } from 'react-router-dom';
+export const Settings = () => {
   const [userDetails, setUserDetails] = useState({
-    name: '',
+    firstName: '',
+    lastName: '',
     email: '',
-    password: '',
-  });
-  const [addressDetails, setAddressDetails] = useState({
+    mobileNumber: '',
     address: '',
-    city: '',
-    postalCode: '',
-    country: '',
   });
 
-  useEffect(() => {
-    // Initialize form data with user information if available
-    if (user) {
-      setUserDetails({
-        name: user.name || '',
-        email: user.email || '',
-        password: '', // Don't prefill password for security reasons
-      });
-      // Assuming `address` is part of the user's data
-      setAddressDetails(user.address || {
-        address: '',
-        city: '',
-        postalCode: '',
-        country: '',
-      });
-    }
-  }, [user]);
+  const dispatch = useDispatch();
 
-  const handleDetailChange = (e) => {
-    const { name, value } = e.target;
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
     setUserDetails((prevDetails) => ({
       ...prevDetails,
       [name]: value,
     }));
   };
 
-  const handleAddressChange = (e) => {
-    const { name, value } = e.target;
-    setAddressDetails((prevDetails) => ({
-      ...prevDetails,
-      [name]: value,
-    }));
+
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      // Dispatch the updateUserDetails action with the user information
+      await dispatch(updateUserDetails({
+        firstName: userDetails.firstName,
+        lastName: userDetails.lastName,
+        email: userDetails.email,
+        mobileNumber: userDetails.mobileNumber,
+      })).unwrap();
+
+      // Dispatch the saveUserAddressDetails action with the address information
+      await dispatch(saveUserAddressDetails({
+        address: userDetails.address,
+      })).unwrap();
+
+      
+      toast.success("User details updated successfully")
+    } catch (error) {
+      toast.error("Error Updating User details")
+      console.error('Failed to update user details or address:', error);
+    }
   };
 
-  const handleSubmitUserDetails = (e) => {
-    e.preventDefault();
-    dispatch(updateUserDetails(userDetails))
-      .unwrap()
-      .then(() => {
-        toast.success('User details updated successfully!');
-      })
-      .catch((error) => {
-        toast.error(`Update failed: ${error.message || 'Could not update user details.'}`);
-      });
-  };
-
-  const handleSubmitAddressDetails = (e) => {
-    e.preventDefault();
-    dispatch(saveUserAddressDetails(addressDetails))
-      .unwrap()
-      .then(() => {
-        toast.success('Address details updated successfully!');
-      })
-      .catch((error) => {
-        toast.error(`Update failed: ${error.message || 'Could not save address details.'}`);
-      });
-  };
 
   return (
     <div className="settings-container">
       <h1>User Settings</h1>
-      <form onSubmit={handleSubmitUserDetails}>
-        <h2>Edit Profile</h2>
-        <div>
-          <label>Name:</label>
-          <input
-            type="text"
-            name="name"
-            value={userDetails.name}
-            onChange={handleDetailChange}
-          />
+      <form onSubmit={handleSubmit}>
+        <CustomInput
+          type="text"
+          name="firstName"
+          label="First Name"
+          placeholder="Enter your first name"
+          classname="first-name"
+          value={userDetails.firstName}
+          onChange={handleInputChange}
+        />
+        <CustomInput
+          type="text"
+          name="lastName"
+          label="Last Name"
+          placeholder="Enter your last name"
+          classname="last-name"
+          value={userDetails.lastName}
+          onChange={handleInputChange}
+        />
+        <CustomInput
+          type="email"
+          name="email"
+          label="Email"
+          placeholder="Enter your email"
+          classname="email"
+          value={userDetails.email}
+          onChange={handleInputChange}
+        />
+        <CustomInput
+          type="text"
+          name="mobileNumber"
+          label="Mobile Number"
+          placeholder="Enter your mobile number"
+          classname="mobile-number"
+          value={userDetails.mobileNumber}
+          onChange={handleInputChange}
+        />
+        <CustomInput
+          type="text"
+          name="address"
+          label="Address"
+          placeholder="Enter your address"
+          classname="address"
+          value={userDetails.address}
+          onChange={handleInputChange}
+        />
+
+        <div className="submit-button-container">
+          <button type="submit" className="btn btn-primary">
+            Save Changes
+          </button>
         </div>
-        <div>
-          <label>Email:</label>
-          <input
-            type="email"
-            name="email"
-            value={userDetails.email}
-            onChange={handleDetailChange}
-          />
-        </div>
-        <div>
-          <label>Password:</label>
-          <input
-            type="password"
-            name="password"
-            value={userDetails.password}
-            onChange={handleDetailChange}
-          />
-        </div>
-        <button type="submit">Update Profile</button>
+       
       </form>
 
-      <form onSubmit={handleSubmitAddressDetails}>
-        <h2>Shipping Address</h2>
-        <div>
-          <label>Address:</label>
-          <input
-            type="text"
-            name="address"
-            value={addressDetails.address}
-            onChange={handleAddressChange}
-          />
+      <div className="submit-button-container py-3">
+        <Link to="/forgot-password" className="btn btn-primary text-dark bg-transparent">
+            Reset password
+          </Link>
         </div>
-        <div>
-          <label>City:</label>
-          <input
-            type="text"
-            name="city"
-            value={addressDetails.city}
-            onChange={handleAddressChange}
-          />
-        </div>
-        <div>
-          <label>Postal Code:</label>
-          <input
-            type="text"
-            name="postalCode"
-            value={addressDetails.postalCode}
-            onChange={handleAddressChange}
-          />
-        </div>
-        <div>
-          <label>Country:</label>
-          <input
-            type="text"
-            name="country"
-            value={addressDetails.country}
-            onChange={handleAddressChange}
-          />
-        </div>
-        <button type="submit">Update Address</button>
-      </form>
     </div>
   );
 };

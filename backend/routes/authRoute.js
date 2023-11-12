@@ -18,7 +18,7 @@ const { createUser,
     userCart,
     getUserCart,
     // emptyCart,
-    // applyCoupon,
+    applyCoupon,
     createOrder,
     // getOrders,
     updateOrderStatus,
@@ -56,7 +56,7 @@ router.post('/payment/itn', handleITN);
 router.post("/cart/create-order", authMiddleware, createOrder);
 
 router.post("/cart", authMiddleware, userCart);
-// router.post("/cart/applycoupon", authMiddleware, applyCoupon);
+router.post("/cart/apply-coupon", authMiddleware, applyCoupon);
 
 router.get('/all-users', getallUser);
 // router.get("/get-orders", authMiddleware, getOrders);
