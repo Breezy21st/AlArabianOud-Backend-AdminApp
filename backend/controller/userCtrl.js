@@ -5,7 +5,7 @@ const Product = require('../models/productModel');
 const Coupon = require('../models/couponModel');
 const Order =  require('../models/orderModel');
 const uniqid = require('uniqid'); 
-
+const mongoose = require('mongoose');
 const asyncHandler = require('express-async-handler');
 const validateMongoDbId = require('../utils/validateMongodbid');
 const { generateRefreshToken } = require('../config/refreshtoken');
@@ -461,34 +461,84 @@ const updateProductQuantityFromCart = asyncHandler(async (req, res) =>{
 });
 
 const createOrder = asyncHandler(async (req, res) => {
-  const { shippingInfo, orderItems, totalPrice, totalPriceAfterDiscount, paymentInfo } = req.body;
-  const { _id } = req.user;
+  // Extract data from request body
+  const {
+    shippingInfo,
+    orderItems,
+    totalPrice,
+    totalPriceAfterDiscount,
+    paymentInfo,
+    orderStatus
+  } = req.body;
+
+  // Extract user ID from request user
+  const { _id: userId } = req.user;
+
+  // Initialize session variable
+  let session = null;
 
   try {
-    const order = await Order.create({
+    // Start transaction session
+    session = await mongoose.startSession();
+    session.startTransaction();
+
+    // Create order with session and structure as an array
+    const order = await Order.create([{
+      user: userId,
       shippingInfo,
       orderItems,
       totalPrice,
       totalPriceAfterDiscount,
       paymentInfo,
-      user: _id
-    });
+      orderStatus
+    }], { session });
 
-    // Use the order ID as the internal payment ID for PayFast
-    const internalPaymentID = order._id.toString();
+    // If order creation was successful but the order object is still not structured correctly
+    if (!order || !Array.isArray(order) || !order.length || !order[0]._id) {
+      throw new Error('Order creation failed');
+    }
 
-    // Send back the order along with the internalPaymentID for PayFast
+    // Convert the order ID to string format
+    const internalPaymentID = order[0]._id.toString();
+
+    // Clear the cart after order creation using the user ID and session
+    await Cart.deleteMany({ user: userId }, { session });
+
+    // Update the product quantities
+    for (const item of orderItems) {
+      // Since the product ID is a string, use it directly
+      await Product.findByIdAndUpdate(
+        item.product,
+        { $inc: { quantity: -item.quantity, sold: item.quantity } },
+        { session, new: true }
+      );
+    }
+
+    // Commit the transaction
+    await session.commitTransaction();
+    session.endSession();
+
+    // Respond with order and payment information
     res.json({
-      order,
-      internalPaymentID, // This will be used as 'm_payment_id' in PayFast's POST data
+      order: order[0],
+      internalPaymentID,
       success: true
     });
-
-  } catch (error){
+  } catch (error) {
+    // Abort transaction in case of error
+    if (session) {
+      await session.abortTransaction();
+    }
     console.error('Order creation failed:', error);
-    res.status(500).json({ message: "Error creating order", error: error.message });
+    res.status(500).json({ message: "Error creating order", error: error.toString() });
+  } finally {
+    // End session if it exists
+    if (session) {
+      session.endSession();
+    }
   }
 });
+
 
 
 // const applyCoupon = asyncHandler(async (req, res) => {
@@ -582,7 +632,7 @@ const getUserOrders = async (req, res) => {
   const user = req.user;
   validateMongoDbId(user._id);
 
-  const orders = await Order.find({ user: user._id }).populate('OrderItems.product');
+  const orders = await Order.find({ user: user._id }).populate('orderItems.product');
   res.json(orders);
 };
 
@@ -604,7 +654,7 @@ const getUserOrders = async (req, res) => {
 // Get all orders (Admin)
 const getAllOrders = async (req, res) => {
   // This should be protected and only accessible by admins
-  const orders = await Order.find().populate('user', 'name').populate('OrderItems.product');
+  const orders = await Order.find().populate('user', 'name').populate('orderItems.product');
   res.json(orders);
 };
 
@@ -663,7 +713,7 @@ const getOrderByUserId = async (req, res) => {
   const user = req.user;
   validateMongoDbId(user._id);
 
-  const orders = await Order.find({ user: user._id }).populate('OrderItems.product');
+  const orders = await Order.find({ user: user._id }).populate('orderItems.product');
   res.json(orders);
 };
 
@@ -672,7 +722,7 @@ const getSingleOrder = async (req, res) => {
   const orderId = req.params.id;
   validateMongoDbId(orderId);
 
-  const order = await Order.findById(orderId).populate('OrderItems.product');
+  const order = await Order.findById(orderId).populate('orderItems.product');
   if (!order) {
     res.status(404);
     throw new Error('Order not found');

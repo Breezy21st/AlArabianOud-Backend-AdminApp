@@ -85,10 +85,11 @@ const Checkout = () => {
       
       const orderData = {
         shippingInfo: values,
-        OrderItems: orderItems,
+        orderItems: orderItems,
         totalPrice: totalAmount,
         totalPriceAfterDiscount: totalAmount, // Modify as per discount logic if needed
-        paymentInfo, // This needs to be declared before being used here
+        paymentInfo,
+        orderStatus: "Ordered" 
       };
       dispatch(createPaymentOrder(orderData))
         .unwrap()

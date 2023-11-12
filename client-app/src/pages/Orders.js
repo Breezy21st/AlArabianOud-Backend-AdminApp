@@ -84,7 +84,7 @@ const Orders = () => {
 
   return (
     <div>
-      <h3 className="mb-4 title">Orders</h3>
+      <h3 className="mb-4 title text-center py-2">Order History</h3>
       <div>{<Table columns={columns} dataSource={data1} />}</div>
     </div>
   );

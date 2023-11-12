@@ -55,6 +55,11 @@ const columns = [
     responsive: ["sm"],
   },
   {
+    title: "Quantity",
+    dataIndex: "quantity",
+    responsive: ["sm"],
+  },
+  {
     title: "Action",
     dataIndex: "action",
     responsive: ["sm"],
@@ -88,6 +93,7 @@ const Productlist = () => {
       brand: productState[i].brand,
       category: productState[i].category,
       price: `${productState[i].price}`,
+      quantity: productState[i].quantity,
       action: (
         <>
           <Link

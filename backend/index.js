@@ -22,7 +22,6 @@ const helmet = require('helmet')
 
 
 
-// Example of custom Helmet configuration (this is just a sample, adjust the options based on your needs)
 app.use(helmet({
     frameguard: {
       action: 'deny'
@@ -41,11 +40,7 @@ app.use(helmet({
     
     permissionsPolicy: {
         features: {
-          
-          geolocation: ["self"], // Only allow geolocation to the same origin
-          microphone: ["self"], // Only allow microphone to the same origin
-          "usb-connection": [], // Disallow USB connection completely
-          
+          geolocation: ["self"], 
         },
     },
   }));

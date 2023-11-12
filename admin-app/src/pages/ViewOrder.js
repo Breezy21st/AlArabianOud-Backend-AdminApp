@@ -13,6 +13,7 @@ const columns = [
     title: "Order Items",
     render: (record) => (
       <React.Fragment>
+        <p>Image: {record.image}</p>
         <p>Product Name: {record.name}</p>
         <p>Brand: {record.brand}</p>
         <p>Count: {record.count}</p>
@@ -22,6 +23,12 @@ const columns = [
     ),
     responsive: ["xs"]
   },
+  {
+    title: "Image",
+    dataIndex: "image",
+    render: (text, record) => <div>{record.image}</div>,
+    responsive: ["sm"],
+    },
   {
     title: "Product Name",
     dataIndex: "name",
@@ -55,23 +62,24 @@ const ViewOrder = () => {
   }, [dispatch, orderId]);
 
 
-  const orderState = useSelector((state) => state?.auth?.singleorder?.orders);
+  const orderState = useSelector((state) => state?.auth?.singleorder?.orderItems);
   console.log(orderState)
   const data1 = [];
   
 
-  for (let i = 0; i < orderState?.products.length; i++) {
-  
-    data1.push({
-      key: i + 1,
-      name: orderState?.products[i]?.product.title,
-      brand: orderState?.products[i]?.product.brand,
-      count: orderState?.products[i]?.count,
-      amount: orderState?.products[i]?.product.price
+  if (orderState) {
+    orderState.forEach((item, index) => {
+      data1.push({
+        key: index + 1,
+        image: <img src={item.product.images[0]?.url} style={{ width: "50px" }} alt={item.product.title} />,
+        name: item.product.title,
+        brand: item.product.brand,
+        count: item.quantity,
+        amount: item.price, 
+      });
     });
 
- // Log orderData to check its contents
-console.log("orderState:", orderState);
+
   }
 
   return (
