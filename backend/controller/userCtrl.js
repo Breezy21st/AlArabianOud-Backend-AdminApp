@@ -660,10 +660,10 @@ const updateOrderStatus = async (req, res) => {
 
 // Get orders by user ID (Admin)
 const getOrderByUserId = async (req, res) => {
-  const userId = req.params.id;
-  validateMongoDbId(userId);
+  const user = req.user;
+  validateMongoDbId(user._id);
 
-  const orders = await Order.find({ user: userId }).populate('OrderItems.product');
+  const orders = await Order.find({ user: user._id }).populate('OrderItems.product');
   res.json(orders);
 };
 

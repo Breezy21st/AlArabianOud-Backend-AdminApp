@@ -75,15 +75,20 @@ const Checkout = () => {
         payfastOrderId: "placeholder-order-id",
       };
 
+      const validCartItems = cartState.filter(item => item && item.productId && item.productId._id && item.quantity && item.productId.price);
+
+      const orderItems = validCartItems.map(item => ({
+        product: item.productId._id, // assuming productId is always there after filter
+        quantity: item.quantity,
+        price: item.productId.price,
+      }));
+      
       const orderData = {
         shippingInfo: values,
-        orderItems: cartState.map(item => ({
-          product: item.productId._id,
-          quantity: item.quantity
-        })),
+        OrderItems: orderItems,
         totalPrice: totalAmount,
-        totalPriceAfterDiscount: totalAmount, // If you don't have discounts, just duplicate the totalAmount or set a proper discount logic
-        paymentInfo,
+        totalPriceAfterDiscount: totalAmount, // Modify as per discount logic if needed
+        paymentInfo, // This needs to be declared before being used here
       };
       dispatch(createPaymentOrder(orderData))
         .unwrap()

@@ -22,6 +22,10 @@ import SingleProduct from "./pages/SingleProduct";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import Orders from './pages/Orders';
+import Settings from './pages/Settings';
+import ViewOrder from './pages/ViewOrder';
+
+
 
 function App() {
   return (
@@ -49,6 +53,8 @@ function App() {
                 <Route path="shipping-policy" element={<ShippingPolicy />} />
                 <Route path="term-conditions" element={<TermAndContions />} />
                 <Route path='orders' element={<Orders/>}/>
+                <Route path='settings' element={<Settings/>}/>
+                <Route path="order/:id" element={<ViewOrder />} />
               </Route>
           </Routes>
       </BrowserRouter>

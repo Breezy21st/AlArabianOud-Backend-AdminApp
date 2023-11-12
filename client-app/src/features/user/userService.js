@@ -88,6 +88,28 @@ const createOrder = async (orderData) => {
     return response.data;
   };
 
+
+  // Function to get orders by user ID
+const getOrdersByUserId = async (userId) => {
+    try {
+      const response = await axios.get(`${base_url}user/getorderbyuser/${userId}`, config);
+      return response.data; // Assuming your backend is set to respond with order data
+    } catch (error) {
+      console.error(`Error fetching orders for user ID ${userId}:`, error);
+      throw error;
+    }
+  };
+
+  const updateUser = async (userData) => {
+    const response = await axios.put(`${base_url}user/edit-user`, userData, config);
+    return response.data;
+  };
+  
+  const saveUserAddress = async (addressData) => {
+    const response = await axios.put(`${base_url}user/save-address`, addressData, config);
+    return response.data;
+  };
+
 export const authService={
     register,
     login,
@@ -98,6 +120,9 @@ export const authService={
     updateProductFromCart,
     createOrder,
     getOrders,
-    getOrder
+    getOrder,
+    getOrdersByUserId,
+    updateUser,
+    saveUserAddress,
 
 };

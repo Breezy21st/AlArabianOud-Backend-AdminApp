@@ -115,6 +115,41 @@ export const addProdToCart = createAsyncThunk(
             }
           );
 
+          export const fetchOrdersByUserId = createAsyncThunk(
+            'user/fetchOrdersByUserId',
+            async (userId, thunkAPI) => {
+              try {
+                return await authService.getOrdersByUserId(userId);// Assuming that the response has a `data` field with the orders
+              } catch (error) {
+                return thunkAPI.rejectWithValue(error);
+              }
+            }
+          );
+
+          // Define async thunks
+export const updateUserDetails = createAsyncThunk(
+    'user/updateDetails',
+    async (userData, { rejectWithValue }) => {
+      try {
+        const data = await authService.updateUser(userData);
+        return data;
+      } catch (error) {
+        return rejectWithValue(error.response.data);
+      }
+    }
+  );
+  
+  export const saveUserAddressDetails = createAsyncThunk(
+    'user/saveAddress',
+    async (addressData, { rejectWithValue }) => {
+      try {
+        const data = await authService.saveUserAddress(addressData);
+        return data;
+      } catch (error) {
+        return rejectWithValue(error.response.data);
+      }
+    }
+  );
 
 const getCustomerFromLocalStorage = localStorage.getItem("customer")
 ? JSON.parse(localStorage.getItem("customer"))
@@ -127,6 +162,7 @@ const initialState={
     wishlist: [],
     cartProducts: [],
     createdOrder: [],
+    // ordersByUserId: [],
     isError:false,
     isSuccess:false,
     isLoading:false,
@@ -323,6 +359,54 @@ export const authSlice = createSlice({
             state.message = "success";
           })
           .addCase(getOrder.rejected, (state, action) => {
+            state.isError = true;
+            state.isSuccess = false;
+            state.message = action.error;
+            state.isLoading = false;
+          })
+          .addCase(fetchOrdersByUserId.pending, (state) => {
+            state.isLoading = true;
+          })
+          .addCase(fetchOrdersByUserId.fulfilled, (state, action) => {
+            state.isError = false;
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.ordersByUserId = action.payload;
+            state.message = "success";
+          })
+          .addCase(fetchOrdersByUserId.rejected, (state, action) => {
+            state.isError = true;
+            state.isSuccess = false;
+            state.message = action.error;
+            state.isLoading = false;
+          })
+          .addCase(updateUserDetails.pending, (state) => {
+            state.isLoading = true;
+          })
+          .addCase(updateUserDetails.fulfilled, (state, action) => {
+            state.isError = false;
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.updateUserDetails = action.payload;
+            state.message = "success";
+          })
+          .addCase(updateUserDetails.rejected, (state, action) => {
+            state.isError = true;
+            state.isSuccess = false;
+            state.message = action.error;
+            state.isLoading = false;
+          })
+          .addCase(saveUserAddressDetails.pending, (state) => {
+            state.isLoading = true;
+          })
+          .addCase(saveUserAddressDetails.fulfilled, (state, action) => {
+            state.isError = false;
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.saveUserAddress = action.payload;
+            state.message = "success";
+          })
+          .addCase(saveUserAddressDetails.rejected, (state, action) => {
             state.isError = true;
             state.isSuccess = false;
             state.message = action.error;

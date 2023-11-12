@@ -62,9 +62,9 @@ router.get('/all-users', getallUser);
 // router.get("/get-orders", authMiddleware, getOrders);
 // router.get("/getmyorders", authMiddleware, getMyOrders);
 router.get("/getallorders", authMiddleware, isAdmin, getAllOrders);
-router.get("/getaOrder/:id", authMiddleware, isAdmin, getSingleOrder);
+router.get("/getaOrder/:id", authMiddleware, getSingleOrder);
 router.put("/updateOrder/:id", authMiddleware, isAdmin, updateOrderStatus)
-router.post("/getorderbyuser/:id", authMiddleware, isAdmin, getOrderByUserId);
+router.get("/getorderbyuser/:id", authMiddleware, getOrderByUserId);
 router.get("/getMonthWiseOrderIncome", authMiddleware, getMonthWiseOrderIncome);
 
 router.get("/getyearlyorders", authMiddleware, getYearlyTotalOrders);
